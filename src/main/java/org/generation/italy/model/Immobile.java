@@ -7,10 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -19,7 +17,7 @@ public class Immobile {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@NotNull
 	private Integer canone;
@@ -60,11 +58,14 @@ public class Immobile {
 	@ManyToOne
 	private Agente agente;
 	
-	public Integer getId() {
+	@OneToMany(mappedBy = "immobile")
+    List<Appuntamento> appuntamenti;
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -158,6 +159,14 @@ public class Immobile {
 
 	public void setAgente(Agente agente) {
 		this.agente = agente;
+	}
+
+	public List<Appuntamento> getAppuntamenti() {
+		return appuntamenti;
+	}
+
+	public void setAppuntamenti(List<Appuntamento> appuntamenti) {
+		this.appuntamenti = appuntamenti;
 	}
 	
 }

@@ -1,9 +1,12 @@
 package org.generation.italy.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -12,7 +15,7 @@ public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@NotNull
 	private String nome;
@@ -27,11 +30,14 @@ public class Cliente {
 	@NotNull
 	private String email;
 	
-	public Integer getId() {
+	@OneToMany(mappedBy = "cliente")
+    List<Appuntamento> appuntamenti;
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -65,6 +71,14 @@ public class Cliente {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Appuntamento> getAppuntamenti() {
+		return appuntamenti;
+	}
+
+	public void setAppuntamenti(List<Appuntamento> appuntamenti) {
+		this.appuntamenti = appuntamenti;
 	}
 	
 }
