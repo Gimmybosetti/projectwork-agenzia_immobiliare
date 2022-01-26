@@ -3,6 +3,7 @@ package org.generation.italy.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,38 +24,40 @@ public class Immobile {
 	private Integer canone;
 	
 	@NotNull
-	@NotEmpty
+	@NotEmpty(message="indirizzo non deve essere null")
 	private String indirizzo;
 	
-	@NotNull
+	@NotNull(message="nBalconi non deve essere null")
 	private Integer nBalconi;
 	
-	@NotNull
+	@NotNull(message="nBagni non deve essere null")
 	private Integer nBagni;
 	
-	@NotNull
+	@NotNull(message="nStanze non deve essere null")
 	private Integer nStanze;
 	
-	@NotNull
+	@NotNull(message="inVendita non deve essere null")
 	private Boolean inVendita;
 	
-	@NotNull
+	@Column(nullable=false)
 	private Boolean libero;
 
-	@NotNull
+	@Column(nullable=false)
 	private LocalDateTime dataIns;
 	
-	@NotNull
+	
+
+	@NotNull(message="tipologia non deve essere null")
 	@ManyToOne
 	private Tipologia tipologia;
 	
-	@NotNull
+	@NotNull(message="classeEnergetica non deve essere null")
 	@ManyToOne
-	private ClasseEnergetica classeEner;
+	private ClasseEnergetica classeEnergetica;
 	
 	private Integer numVisual;
 	
-	@NotNull
+	@NotNull(message="agente non deve essere null")
 	@ManyToOne
 	private Agente agente;
 	
@@ -125,24 +128,26 @@ public class Immobile {
 		this.libero = libero;
 	}
 
-	public Tipologia getTipologiaId() {
+	public Tipologia getTipologia() {
 		return tipologia;
 	}
 
-	public void setTipologiaId(Tipologia tipologiaId) {
-		this.tipologia = tipologiaId;
+	public void setTipologia(Tipologia tipologia) {
+		this.tipologia = tipologia;
 	}
 
 	public LocalDateTime getDataIns() {
 		return dataIns;
 	}
-
-	public ClasseEnergetica getClasseEner() {
-		return classeEner;
+	public void setDataIns(LocalDateTime dataIns) {
+		this.dataIns = dataIns;
+	}
+	public ClasseEnergetica getClasseEnergetica() {
+		return classeEnergetica;
 	}
 
-	public void setClasseEner(ClasseEnergetica classeEner) {
-		this.classeEner = classeEner;
+	public void setClasseEnergetica(ClasseEnergetica classeEnergetica) {
+		this.classeEnergetica = classeEnergetica;
 	}
 
 	public Integer getNumVisual() {
