@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+
+<head>
+	<div th:replace="fragments/head :: headTags">
+	</div>
+	<title>Immobili</title>
+</head>
+<div th:replace="fragments/navbar :: nav"></div>
+<header>
+
+</header>
+
+<body>
+	<h1 class="text-center">Immobili</h1>
+	<hr />
+	<div class="container">
+		<div class="mb-3 mx-5 d-flex justify-content-between">
+			<a class="btn btn-primary" th:href="@{/administration/immobili/crea}"><i class="fas fa-plus"></i> Aggiungi Immobile</a>
+		</div>
+		<table class="table" th:if="${listaImmobili.size > 0}">
+			<thead>
+				<tr>
+					<th>Canone</th>
+					<th>Data inserimento</th>
+					<th>In vendita</th>
+					<th>Indirizzo</th>
+					<th>Libero</th>
+					<th>Bagni</th>
+					<th>Balconi</th>
+					<th>Stanze</th>
+					<th>Classe Ener</th>
+					<th>Agente</th>
+					<th>Visualizzazioni</th>
+
+
+				</tr >
+			</thead>
+			<tbody>
+				<tr th:each="item:${listaImmobili}">
+					<td th:text="${item.canone}"></td>
+					<td th:text="${item.dataIns}"></td>
+					<td th:if="${item.inVendita}">In Vendita</td>
+					<td th:unless="${item.inVendita}">In Affitto</td>
+					<td th:text="${item.indirizzo}"></td>
+					<td th:if="${item.libero}">Libero</td>
+					<td th:unless="${item.libero}">Occupato/Venduto</td>
+					<td th:text="${item.nBagni}"></td>
+					<td th:text="${item.nBalconi}"></td>
+					<td th:text="${item.nStanze}"></td>
+					<td th:text="${item.classeEnergetica.descrizione}"></td>
+					<td th:text="|${item.agente.nome} ${item.agente.cognome}|"></td>
+					<td class="text-center" th:if="${item.numVisual}" th:text="${item.numVisual}"></td>
+					<td class="text-center" th:unless="${item.numVisual}">0</td>
+
+
+
+
+
+					<td>
+						<a class="btn btn-primary" th:href="@{|/administration/immobili/modifica/${item.id}|}"><i class="fas fa-edit"></i></a>
+						
+					</td>
+
+				</tr>
+			</tbody>
+
+		</table>
+
+		<div class="alert alert-primary" role="alert" th:unless="${listaImmobili.size>0}">
+			non ci sono immobili nel database
+		</div>
+	</div>
+	<div th:replace="fragments/head ::scripts"></div>
+
+</body>
+
+</html>

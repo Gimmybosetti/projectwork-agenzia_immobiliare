@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
-public class IndexController {
+@RequestMapping("/administration/immobili")
+public class ImmobiliController {
 	
 	@Autowired
 	private ImmobiliService service;
@@ -37,7 +37,7 @@ public class IndexController {
 	@GetMapping
 	public String index (Model model) {
 		model.addAttribute("listaImmobili",service.trovaImmobile());
-		return "/immobili/index";
+		return "/amministrazione/immobili/index";
 	}
 	@GetMapping("/crea")
 	public String creaImmobile (Model model) {
@@ -47,7 +47,7 @@ public class IndexController {
 		model.addAttribute("listaAgenti", agenteService.trovaAgente());
 		model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
 		model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
-		return "/amministrazione/formImmobile";
+		return "/amministrazione/immobili/formImmobile";
 	}
 	@PostMapping("/crea")
 	public String postImmobile(@Valid @ModelAttribute("immobile") Immobile formImmobile,BindingResult bindingResult, Model model) {
@@ -57,10 +57,10 @@ public class IndexController {
 			model.addAttribute("listaAgenti", agenteService.trovaAgente());
 			model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
 			model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
-			return "/amministrazione/formImmobile";
+			return "/amministrazione/immobili/formImmobile";
 		}
 		service.salvaImmobile(formImmobile);
-		return "redirect:/";
+		return "redirect:/administration/immobili";
 	}
 	@GetMapping("/modifica/{id}")
 	public String modificaImmobile(@PathVariable("id") Long id, Model model) {
@@ -70,7 +70,7 @@ public class IndexController {
 		model.addAttribute("listaAgenti", agenteService.trovaAgente());
 		model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
 		model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
-		return "/amministrazione/formImmobile";
+		return "/amministrazione/immobili/formImmobile";
 	}
 	@PostMapping("/modifica/{id}")
 	public String aggiornaImmobile(@Valid @ModelAttribute("immobile") Immobile formImmobile, BindingResult bindingResult, Model model) {
@@ -80,9 +80,9 @@ public class IndexController {
 			model.addAttribute("listaAgenti", agenteService.trovaAgente());
 			model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
 			model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
-			return "/amministrazione/formImmobile";
+			return "/amministrazione/immobili/formImmobile";
 		}
 	    service.aggiorna(formImmobile);
-		return "redirect:/";
+		return "redirect:/administration/immobili";
 	}
 }

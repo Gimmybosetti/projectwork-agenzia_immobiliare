@@ -16,4 +16,17 @@ public class AgenteService {
 	public List<Agente> trovaAgente(){
 		return repository.findAll();
 	}
+	
+	public Agente salvaAgente(Agente agente) {
+		return repository.save(agente);
+	}
+
+	public Agente prendiPerId(Long id) {
+		return repository.getById(id);
+	}
+
+	public Agente aggiorna(Agente agente) {
+		return repository.save(agente);
+	}
+	
 }

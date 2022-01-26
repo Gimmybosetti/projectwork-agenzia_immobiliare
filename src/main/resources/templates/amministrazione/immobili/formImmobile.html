@@ -12,7 +12,7 @@
 	<h1 class="mx-5 text-center">Immobile</h1>
 	<hr>
 	<form id="immobile-form" th:object="${immobile}"
-		th:action="${modifica} ? @{/modifica/{id}(id=${immobile.id})} : @{/crea}" method="post">
+		th:action="${modifica} ? @{/administration/immobili/modifica/{id}(id=${immobile.id})} : @{/administration/immobili/crea}" method="post">
 		<ul>
 			<li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="text-danger"></li>
 		</ul>
@@ -117,7 +117,7 @@
 					</select>
 					<div class="col-12 d-flex justify-content-between">
 						<button class="btn btn-primary mt-3" type="submit"><i class="fas fa-check"></i> Salva</button>
-						<a class="btn btn-primary mt-3" th:href="@{/}"><i class="fas fa-times"></i> Annulla</a>
+						<a class="btn btn-primary mt-3" th:href="@{/administration/immobili}"><i class="fas fa-times"></i> Annulla</a>
 					</div>
 				</div>
 			</div>
