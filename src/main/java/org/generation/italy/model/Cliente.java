@@ -7,8 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+//import javax.validation.constraints.Pattern;
 
 @Entity
 public class Cliente {
@@ -17,17 +18,22 @@ public class Cliente {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	@NotEmpty
+	@NotNull(message="Inserisci un nome")
 	private String nome;
 	
-	@NotNull
+	@NotEmpty
+	@NotNull(message="Inserisci un cognome")
 	private String cognome;
 	
-	@NotNull
-	@Pattern(regexp="^[2-9]\\d{2}-\\d{3}-\\d{4}$")
-	private Integer phone;
+	@NotNull(message="Inserisci un numero di telefono")
+	//@Pattern(regexp="^[2-9]\\d{2}-\\d{3}-\\d{4}$")
+	private String phone;
 	
-	@NotNull
+	@NotEmpty
+	@NotNull(message="Inserisci un email")
+	//@Pattern(regexp="^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}\r\n"
+	//		+ "[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$")
 	private String email;
 	
 	@OneToMany(mappedBy = "cliente")
@@ -57,11 +63,11 @@ public class Cliente {
 		this.cognome = cognome;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

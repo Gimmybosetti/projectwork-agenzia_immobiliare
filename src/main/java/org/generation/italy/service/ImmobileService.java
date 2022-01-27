@@ -4,15 +4,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.generation.italy.model.Immobile;
-import org.generation.italy.repository.ImmobiliRepository;
+import org.generation.italy.repository.ImmobileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ImmobiliService {
+public class ImmobileService {
 	
 	@Autowired
-	private ImmobiliRepository repository;
+	private ImmobileRepository repository;
 	
 	public List<Immobile> trovaImmobile(){
 		return repository.findAll();
