@@ -6,7 +6,7 @@ import javax.validation.Valid;
 import org.generation.italy.model.Immobile;
 import org.generation.italy.service.AgenteService;
 import org.generation.italy.service.ClasseEnergeticaService;
-import org.generation.italy.service.ImmobiliService;
+import org.generation.italy.service.ImmobileService;
 import org.generation.italy.service.TipologiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ImmobiliController {
 	
 	@Autowired
-	private ImmobiliService service;
+	private ImmobileService service;
 	
 	@Autowired
 	private AgenteService agenteService;

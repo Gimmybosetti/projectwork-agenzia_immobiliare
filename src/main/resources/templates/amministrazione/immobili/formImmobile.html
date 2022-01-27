@@ -16,10 +16,10 @@
 		<ul>
 			<li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="text-danger"></li>
 		</ul>
-		<div class="row">
-			<div class="col-8 offset-2">
+		<div class="row py-3">
+			<div class="col-8 offset-2 my-3">
 				<div class="row mx-4">
-					<div class="col-3">
+					<div class="col-2">
 						<label class="form-label" for="canone">Canone</label>
 						<input type="number" class="form-control" id="canone" th:field="*{canone}"
 							th:errorClass="is-invalid">
@@ -41,8 +41,14 @@
 							</ul>
 						</div>
 					</div>
-
-					<div class="col-1">
+					<div class="col-2">
+						<label class="form-label" for="selectCEner">Classe Energetica</label>
+						<select class="form-select" aria-label="Classe Energetica" id="selectCEner" th:field="*{classeEnergetica}">
+							<option value="">Scegli Classe</option>
+							<option th:each="classeEner : ${listaClasseEner}" th:value="${classeEner.id}" th:text="${classeEner.descrizione}"></option >
+						</select>
+					</div>
+					<div class="col-2">
 						<label class="form-label" for="nBagni">Bagni</label>
 						<input type="number" class="form-control" id="nBagni" th:field="*{nBagni}"
 							th:errorClass="is-invalid">
@@ -52,7 +58,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-1">
+					<div class="col-2">
 						<label class="form-label" for="nBalconi">Balconi</label>
 						<input type="number" class="form-control" id="nBalconi" th:field="*{nBalconi}"
 							th:errorClass="is-invalid">
@@ -62,7 +68,7 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-1">
+					<div class="col-2">
 						<label class="form-label" for="nStanze">Stanze</label>
 						<input type="number" class="form-control" id="nStanze" th:field="*{nStanze}"
 							th:errorClass="is-invalid">
@@ -72,15 +78,19 @@
 							</ul>
 						</div>
 					</div>
-
-					<div class="col-6 mt-3">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" th:field="*{inVendita}"
-								th:id="checkboxInVendita">
-							<label class="form-check-label" th:for="checkboxInVendita">Spuntare se è in vendita, non
-								spuntare se è in affitto
-							</label>
-						</div>
+					<div class="col-4">
+						<label class="form-label" for="selectTipologia">Tipologia</label>
+						<select class="form-select" aria-label="Tipologia" id="selectTipologia" th:field="*{tipologia}">
+							<option value="">Scegli Tipologia</option>
+							<option th:each="tipologia : ${listaTipologia}" th:value="${tipologia.id}" th:text="${tipologia.descrizione}"></option >
+						</select>
+					</div>
+					<div class="col-4">
+						<label class="form-label" for="selectAgente">Agente</label>
+						<select class="form-select" aria-label="Agente" id="selectAgente" th:field="*{agente}">
+							<option value="">Scegli Agente</option>
+							<option th:each="agente : ${listaAgenti}" th:value="${agente.id}" th:text="${agente.nome}"></option >
+						</select>
 					</div>
 					<div class="col-6 mt-3" th:if="${modifica}">
 						<div class="form-check">
@@ -100,21 +110,29 @@
 							</label>
 						</div>
 					</div>
-					<label class="form-label" for="selectAgente">Agente</label>
-					<select class="form-select" aria-label="Agente" id="selectAgente" th:field="*{agente}">
-						<option value="">Open this select menu</option>
-						<option th:each="agente : ${listaAgenti}" th:value="${agente.id}" th:text="${agente.nome}"></option >
-					</select>
-					<label class="form-label" for="selectCEner">Classe Energetica</label>
-					<select class="form-select" aria-label="Classe Energetica" id="selectCEner" th:field="*{classeEnergetica}">
-						<option value="">Open this select menu</option>
-						<option th:each="classeEner : ${listaClasseEner}" th:value="${classeEner.id}" th:text="${classeEner.descrizione}"></option >
-					</select>
-					<label class="form-label" for="selectTipologia">Tipologia</label>
-					<select class="form-select" aria-label="Tipologia" id="selectTipologia" th:field="*{tipologia}">
-						<option value="">Open this select menu</option>
-						<option th:each="tipologia : ${listaTipologia}" th:value="${tipologia.id}" th:text="${tipologia.descrizione}"></option >
-					</select>
+					<div class="col-6 mt-3" th:if="${modifica}">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" th:field="*{cancellato}"
+								th:id="cancellato" default="checked">
+							<label class="form-check-label" th:for="cancellato">Spuntare se è da annullare</label>
+						</div>
+					</div>
+					<div class="col-6 mt-3" th:unless="${modifica}" hidden>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" th:field="*{cancellato}"
+								th:id="cancellato" default="checked">
+							<label class="form-check-label" th:for="cancellato"></label>
+						</div>
+					</div>
+					<div class="col-6 mt-3">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" th:field="*{inVendita}"
+								th:id="checkboxInVendita">
+							<label class="form-check-label" th:for="checkboxInVendita">Spuntare se è in vendita, non
+								spuntare se è in affitto
+							</label>
+						</div>
+					</div>
 					<div class="col-12 d-flex justify-content-between">
 						<button class="btn btn-primary mt-3" type="submit"><i class="fas fa-check"></i> Salva</button>
 						<a class="btn btn-primary mt-3" th:href="@{/administration/immobili}"><i class="fas fa-times"></i> Annulla</a>
