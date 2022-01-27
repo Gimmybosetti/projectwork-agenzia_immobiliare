@@ -20,6 +20,7 @@ public class ImmobileService {
 
 	public Immobile salvaImmobile(Immobile immobile) {
 		immobile.setDataIns(LocalDateTime.now());
+		immobile.setCancellato(false);
 		immobile.setLibero(true);
 		return repository.save(immobile);
 	}

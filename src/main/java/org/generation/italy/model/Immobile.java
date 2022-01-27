@@ -45,7 +45,7 @@ public class Immobile {
 	@Column(nullable=false)
 	private LocalDateTime dataIns;
 	
-	
+	private Boolean cancellato;
 
 	@NotNull(message="tipologia non deve essere null")
 	@ManyToOne
@@ -126,6 +126,14 @@ public class Immobile {
 
 	public void setLibero(Boolean libero) {
 		this.libero = libero;
+	}
+
+	public Boolean getCancellato() {
+		return cancellato;
+	}
+
+	public void setCancellato(Boolean cancellato) {
+		this.cancellato = cancellato;
 	}
 
 	public Tipologia getTipologia() {
