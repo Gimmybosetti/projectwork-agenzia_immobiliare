@@ -3,48 +3,114 @@
 <html>
 
 <head>
-	<div th:replace="fragments/head :: headTags">
-	</div>
-	<title>Form Agenti</title>
+<div th:replace="fragments/head :: headTags"></div>
+<title>Form Agenti</title>
 </head>
 
 <body>
-	<h1 class="mx-5 text-center">Agenti</h1>
-	<hr>
-	<form id="agente-form" th:object="${agente}"
-		th:action="${modifica} ? @{/administration/agenti/modifica/{id}(id=${agente.id})} : @{/administration/agenti/crea}" method="post">
-		<div class="row">
-			<div class="col-6 offset-3">
-				<div class="row mx-4">
-					<div class="col-6">
-						<label class="form-label" for="nome">Nome</label>
-						<input type="text" class="form-control" id="nome" th:field="*{nome}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
-							<ul>
-								<li th:each="err:${#fields.errors('nome')}" th:text="${err}"></li>
-							</ul>
+	<!--  -->
+	<section class="container-fluid">
+		<div class="border text-center "
+			style="height: 400px; background-color: blue; overflow: hidden;">
+			<img class="w-100"
+				src="https://images.unsplash.com/photo-1626178793926-22b28830aa30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+				alt="foto-sfondo-1">
+
+		</div>
+		<div class="container mb-5">
+			<form id="agente-form" th:object="${agente}"
+				th:action="${modifica} ? @{/administration/agenti/modifica/{id}(id=${agente.id})} : @{/administration/agenti/crea}"
+				method="post">
+				<div class="row">
+					<div class="col-4 border border-3 border-end-0">
+						<!-- <h1 class="mx-5 text-center">Agenti</h1>
+					<hr> -->
+						<div class="row my-5">
+							<div class="card">
+								<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+									class="card-img-top" alt="foto-profilo-2">
+								<div class="card-body">
+									<div class="mb-3">
+										<label for="formFile" class="form-label">Seleziona una
+											foto profilo</label> <input class="form-control" type="file"
+											id="formFile">
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-6">
-						<label class="form-label" for="cognome">Cognome</label>
-						<input type="text" class="form-control" id="cognome" th:field="*{cognome}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
-							<ul>
-								<li th:each="err:${#fields.errors('cognome')}" th:text="${err}"></li>
-							</ul>
+					<div class="col-8 border border-3 border-start-0">
+						<div class="row justify-content-center my-5">
+
+							<div class="row">
+								<div class="col-6 offset-3">
+									<div class="row">
+										<div class="col-6">
+											<label class="form-label" for="nome">Nome</label> <input
+												type="text" class="form-control" id="nome"
+												th:field="*{nome}" th:errorClass="is-invalid">
+											<div th:if="${#fields.hasErrors('nome')}"
+												class="invalid-feedback">
+												<ul>
+													<li th:each="err:${#fields.errors('nome')}"
+														th:text="${err}"></li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-6">
+											<label class="form-label" for="cognome">Cognome</label> <input
+												type="text" class="form-control" id="cognome"
+												th:field="*{cognome}" th:errorClass="is-invalid">
+											<div th:if="${#fields.hasErrors('cognome')}"
+												class="invalid-feedback">
+												<ul>
+													<li th:each="err:${#fields.errors('cognome')}"
+														th:text="${err}"></li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-12 d-flex justify-content-between">
+											<button class="btn btn-primary mt-3" type="submit">
+												<i class="fas fa-check"></i> Salva
+											</button>
+											<a class="btn btn-primary mt-3"
+												th:href="@{/administration/agenti}"><i
+												class="fas fa-times"></i> Annulla</a>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="col-12 d-flex justify-content-between">
-						<button class="btn btn-primary mt-3" type="submit"><i class="fas fa-check"></i> Salva</button>
-						<a class="btn btn-primary mt-3" th:href="@{/administration/agenti}"><i class="fas fa-times"></i> Annulla</a>
 					</div>
 				</div>
-			</div>
+			</form>
+		</div>
+	</section>
 
 
-	</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<div th:replace="fragments/head ::scripts"></div>
 
 </body>

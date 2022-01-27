@@ -37,7 +37,7 @@ public class ImmobiliController {
 	@GetMapping
 	public String index (Model model) {
 		model.addAttribute("listaImmobili",service.trovaImmobile());
-		return "/amministrazione/immobili/index";
+		return "/amministrazione/immobili/indexImmobili";
 	}
 	@GetMapping("/crea")
 	public String creaImmobile (Model model) {
