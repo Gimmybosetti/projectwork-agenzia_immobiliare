@@ -1,0 +1,26 @@
+.footer-image {
+    position: relative; 
+    bottom: 0;
+    
+
+    background-image: url(https://wallpapershome.com/images/pages/pic_h/15784.jpg);
+    background-repeat: no-repeat;
+    background-size:100vw;
+    z-index: -1;
+
+}
+
+.footer-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: rgb(201, 221, 238);
+}
+
+.end-footer {
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,0.6) 27%, rgba(28,1,73,0.6) 97%);
+}
+
+a {
+    color: aliceblue;
+    font-size: large;
+}
