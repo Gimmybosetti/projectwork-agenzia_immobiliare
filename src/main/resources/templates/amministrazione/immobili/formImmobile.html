@@ -1,29 +1,30 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
 
 <head>
-	<div th:replace="fragments/head :: headTags">
-	</div>
-	<title> Form Immobile</title>
+<div th:replace="fragments/head :: headTags"></div>
+<title>Form Immobile</title>
 </head>
 
 <body>
 	<h1 class="mx-5 text-center">Immobile</h1>
 	<hr>
 	<form id="immobile-form" th:object="${immobile}"
-		th:action="${modifica} ? @{/administration/immobili/modifica/{id}(id=${immobile.id})} : @{/administration/immobili/crea}" method="post">
+		th:action="${modifica} ? @{/administration/immobili/modifica/{id}(id=${immobile.id})} : @{/administration/immobili/crea}"
+		method="post">
 		<ul>
-			<li th:each="err : ${#fields.allErrors()}" th:text="${err}" class="text-danger"></li>
+			<li th:each="err : ${#fields.allErrors()}" th:text="${err}"
+				class="text-danger"></li>
 		</ul>
 		<div class="row py-3">
 			<div class="col-8 offset-2 my-3">
 				<div class="row mx-4">
 					<div class="col-2">
-						<label class="form-label" for="canone">Canone</label>
-						<input type="number" class="form-control" id="canone" th:field="*{canone}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('canone')}" class="invalid-feedback">
+						<label class="form-label" for="canone">Canone</label> <input
+							type="number" class="form-control" id="canone"
+							th:field="*{canone}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('canone')}"
+							class="invalid-feedback">
 							<ul>
 								<li th:each="err:${#fields.errors('canone')}" th:text="${err}"></li>
 							</ul>
@@ -32,47 +33,55 @@
 
 
 					<div class="col-6">
-						<label class="form-label" for="indirizzo">Indirizzo</label>
-						<input type="text" class="form-control" id="indirizzo" th:field="*{indirizzo}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('indirizzo')}" class="invalid-feedback">
+						<label class="form-label" for="indirizzo">Indirizzo</label> <input
+							type="text" class="form-control" id="indirizzo"
+							th:field="*{indirizzo}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('indirizzo')}"
+							class="invalid-feedback">
 							<ul>
-								<li th:each="err:${#fields.errors('indirizzo')}" th:text="${err}"></li>
+								<li th:each="err:${#fields.errors('indirizzo')}"
+									th:text="${err}"></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-2">
-						<label class="form-label" for="selectCEner">Classe Energetica</label>
-						<select class="form-select" aria-label="Classe Energetica" id="selectCEner" th:field="*{classeEnergetica}">
+						<label class="form-label" for="selectCEner">Classe
+							Energetica</label> <select class="form-select"
+							aria-label="Classe Energetica" id="selectCEner"
+							th:field="*{classeEnergetica}">
 							<option value="">Scegli Classe</option>
-							<option th:each="classeEner : ${listaClasseEner}" th:value="${classeEner.id}" th:text="${classeEner.descrizione}"></option >
+							<option th:each="classeEner : ${listaClasseEner}"
+								th:value="${classeEner.id}" th:text="${classeEner.descrizione}"></option>
 						</select>
 					</div>
 					<div class="col-2">
-						<label class="form-label" for="nBagni">Bagni</label>
-						<input type="number" class="form-control" id="nBagni" th:field="*{nBagni}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('nBagni')}" class="invalid-feedback">
+						<label class="form-label" for="nBagni">Bagni</label> <input
+							type="number" class="form-control" id="nBagni"
+							th:field="*{nBagni}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('nBagni')}"
+							class="invalid-feedback">
 							<ul>
 								<li th:each="err:${#fields.errors('nBagni')}" th:text="${err}"></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-2">
-						<label class="form-label" for="nBalconi">Balconi</label>
-						<input type="number" class="form-control" id="nBalconi" th:field="*{nBalconi}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('nBalconi')}" class="invalid-feedback">
+						<label class="form-label" for="nBalconi">Balconi</label> <input
+							type="number" class="form-control" id="nBalconi"
+							th:field="*{nBalconi}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('nBalconi')}"
+							class="invalid-feedback">
 							<ul>
 								<li th:each="err:${#fields.errors('nBalconi')}" th:text="${err}"></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-2">
-						<label class="form-label" for="nStanze">Stanze</label>
-						<input type="number" class="form-control" id="nStanze" th:field="*{nStanze}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('nStanze')}" class="invalid-feedback">
+						<label class="form-label" for="nStanze">Stanze</label> <input
+							type="number" class="form-control" id="nStanze"
+							th:field="*{nStanze}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('nStanze')}"
+							class="invalid-feedback">
 							<ul>
 								<li th:each="err:${#fields.errors('nStanze')}" th:text="${err}"></li>
 							</ul>
@@ -80,70 +89,77 @@
 					</div>
 					<div class="col-4">
 						<label class="form-label" for="selectTipologia">Tipologia</label>
-						<select class="form-select" aria-label="Tipologia" id="selectTipologia" th:field="*{tipologia}">
+						<select class="form-select" aria-label="Tipologia"
+							id="selectTipologia" th:field="*{tipologia}">
 							<option value="">Scegli Tipologia</option>
-							<option th:each="tipologia : ${listaTipologia}" th:value="${tipologia.id}" th:text="${tipologia.descrizione}"></option >
+							<option th:each="tipologia : ${listaTipologia}"
+								th:value="${tipologia.id}" th:text="${tipologia.descrizione}"></option>
 						</select>
 					</div>
 					<div class="col-4">
-						<label class="form-label" for="selectAgente">Agente</label>
-						<select class="form-select" aria-label="Agente" id="selectAgente" th:field="*{agente}">
+						<label class="form-label" for="selectAgente">Agente</label> <select
+							class="form-select" aria-label="Agente" id="selectAgente"
+							th:field="*{agente}">
 							<option value="">Scegli Agente</option>
-							<option th:each="agente : ${listaAgenti}" th:value="${agente.id}" th:text="${agente.nome}"></option >
+							<option th:each="agente : ${listaAgenti}" th:value="${agente.id}"
+								th:text="${agente.nome}"></option>
 						</select>
 					</div>
 					<div class="col-6 mt-3" th:if="${modifica}">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" th:field="*{libero}"
-								th:id="libero">
-							<label class="form-check-label" th:for="libero">spuntare se è libero, non
-								spuntare se è occupato
-							</label>
+							<input class="form-check-input" type="checkbox"
+								th:field="*{libero}" th:id="libero"> <label
+								class="form-check-label" th:for="libero">spuntare se è
+								libero, non spuntare se è occupato </label>
 						</div>
 					</div>
 					<div class="col-6 mt-3" th:unless="${modifica}" hidden>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" th:field="*{libero}"
-								th:id="libero" default="checked">
-							<label class="form-check-label" th:for="libero">spuntare se è libero, non
-								spuntare se è occupato
-							</label>
+							<input class="form-check-input" type="checkbox"
+								th:field="*{libero}" th:id="libero" default="checked"> <label
+								class="form-check-label" th:for="libero">spuntare se è
+								libero, non spuntare se è occupato </label>
 						</div>
 					</div>
 					<div class="col-6 mt-3" th:if="${modifica}">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" th:field="*{cancellato}"
-								th:id="cancellato" default="checked">
-							<label class="form-check-label" th:for="cancellato">Spuntare se è da annullare</label>
+							<input class="form-check-input" type="checkbox"
+								th:field="*{cancellato}" th:id="cancellato" default="checked">
+							<label class="form-check-label" th:for="cancellato">Spuntare
+								se è da annullare</label>
 						</div>
 					</div>
 					<div class="col-6 mt-3" th:unless="${modifica}" hidden>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" th:field="*{cancellato}"
-								th:id="cancellato" default="checked">
+							<input class="form-check-input" type="checkbox"
+								th:field="*{cancellato}" th:id="cancellato" default="checked">
 							<label class="form-check-label" th:for="cancellato"></label>
 						</div>
 					</div>
 					<div class="col-6 mt-3">
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" th:field="*{inVendita}"
-								th:id="checkboxInVendita">
-							<label class="form-check-label" th:for="checkboxInVendita">Spuntare se è in vendita, non
-								spuntare se è in affitto
-							</label>
+							<input class="form-check-input" type="checkbox"
+								th:field="*{inVendita}" th:id="checkboxInVendita"> <label
+								class="form-check-label" th:for="checkboxInVendita">Spuntare
+								se è in vendita, non spuntare se è in affitto </label>
 						</div>
 					</div>
 					<div class="col-12 d-flex justify-content-between">
-						<button class="btn btn-primary mt-3" type="submit"><i class="fas fa-check"></i> Salva</button>
-						<a class="btn btn-primary mt-3" th:href="@{/administration/immobili}"><i class="fas fa-times"></i> Annulla</a>
+						<button class="btn btn-primary mt-3" type="submit">
+							<i class="fas fa-check"></i> Salva
+						</button>
+						<a class="btn btn-primary mt-3"
+							th:href="@{/administration/immobili}"><i class="fas fa-times"></i>
+							Annulla</a>
 					</div>
 				</div>
 			</div>
-
+		</div>
 
 	</form>
 	<div th:replace="fragments/head ::scripts"></div>
 
 </body>
+<div th:replace="/fragments/footer :: foot"></div>
 
 </html>
