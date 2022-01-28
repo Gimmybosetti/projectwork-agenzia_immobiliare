@@ -73,5 +73,13 @@ public class Appuntamento {
 	public void setSlotOrari(SlotOrari slotOrari) {
 		this.slotOrari = slotOrari;
 	}
+
+	public Agente getAgente() {
+		return agente;
+	}
+
+	public void setAgente(Agente agente) {
+		this.agente = agente;
+	}
     
 }
