@@ -1,0 +1,66 @@
+<html>
+
+<head>
+	<div th:replace="fragments/head :: head"></div>
+	<title th:text="${immobile.titolo}"></title>
+</head>
+<header>
+	<div th:replace="fragments/navbarAnnunci :: nav"></div>
+</header>
+
+<body>
+	<div class="container" th:object="${immobile}">
+		<h1 th:text="*{titolo}"></h1>
+		<hr />
+		<div class="container">
+			<div class="mb-3 mx-5 d-flex justify-content-between">
+				<a class="btn btn-primary" th:href="@{/administration/immobili/crea}"><i class="fas fa-plus"></i>
+					Aggiungi Immobile</a>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Canone</th>
+						<th>Data inserimento</th>
+						<th>In vendita</th>
+						<th>Indirizzo</th>
+						<th>Libero</th>
+						<th>Bagni</th>
+						<th>Balconi</th>
+						<th>Stanze</th>
+						<th>Classe Ener</th>
+						<th>Agente</th>
+						<th>Titolo</th>
+						<th>Visualizzazioni</th>
+						<th>Contatta</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${immobile.canone}"></td>
+						<td th:text="${immobile.dataIns}"></td>
+						<td th:if="${immobile.inVendita}">In Vendita</td>
+						<td th:unless="${immobile.inVendita}">In Affitto</td>
+						<td th:text="${immobile.indirizzo}"></td>
+						<td th:if="${immobile.libero}">Libero</td>
+						<td th:unless="${immobile.libero}">Occupato/Venduto</td>
+						<td th:text="${immobile.nBagni}"></td>
+						<td th:text="${immobile.nBalconi}"></td>
+						<td th:text="${immobile.nStanze}"></td>
+						<td th:text="${immobile.classeEnergetica.descrizione}"></td>
+						<td th:text="|${immobile.agente.nome} ${immobile.agente.cognome}|"></td>
+						<td th:text="${immobile.titolo}"></td>
+						<td class="text-center" th:if="${immobile.numVisual}" th:text="${immobile.numVisual}"></td>
+						<td class="text-center" th:unless="${immobile.numVisual}">0</td>
+						<td>
+							<a class="btn btn-primary" th:href="@{|/client/annunci/appuntamento/${immobile.id}|}"><i
+									class="fas fa-edit"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:replace="fragments/head :: scripts"></div>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<div th:replace="fragments/head :: head">
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	</div>
+	<title>Annunci Immobili</title>
+</head>
+<header>
+	<div th:replace="fragments/navbarAnnunci :: nav"></div>
+</header>
+
+<body class="container-fluid" style="background-color: rgb(206, 232, 248);">
+	<!-- Search button nel div verde -->
+	<section class="container-fluid mt-3">
+		<div class="row mb-3 d-flex">
+			<div class="col-6 me-3">
+				<div style="background-color: rgb(206, 232, 248); height: 60px;" class="rounded-pill ">
+					<form class="d-flex" style="position: relative; top: 15%; left: 10%;">
+						<label class="form-label me-3 mt-2 fw-3" for="mappa">Cerca in una zona</label>
+						<input class="form-control me-2" type="search" placeholder="Search" id="zona" aria-label="Search"
+							style="width: 50%;">
+						<a class="btn btn-primary ms-1" th:href="@{/GenerationsImmobiliare/home/annunciFiltrati}">Search</a>
+					</form>
+				</div>
+			</div>
+			<div class="row col-5 mb-3 px-4">
+				<div class="col" style="background-color: crimson;">filtri --- filtri</div>
+				<div class="col" style="background-color: rgb(255, 179, 0);">filtri --- filtri</div>
+				<div class="col" style="background-color: rgb(212, 209, 22);">filtri --- filtri</div>
+				<div class="col" style="background-color: rgb(17, 177, 123);">filtri --- filtri</div>
+				<span>Filtri</span>
+			</div>
+			<div class="col-1 d-flex justify-content-end">
+				<span>
+					<a href="#" class="btn btn-outline-primary">Mostra </a>
+				</span>
+			</div>
+		</div>
+		<!-- Barra dei filtri -->
+		<div class="container">
+			
+		</div>
+	</section>
+	<section class="container-fluid">
+		<div class="row mb-3">
+			<div class="col-6 text-center">
+				<div style="background-color: bisque; width: 100%;">
+					<img class="img-fluid" style="position: static;" src="https://i.stack.imgur.com/7LLX9.jpg"
+						alt="immagine Google random">
+				</div>
+			</div>
+			<div class="col-6" th:if="${listaImmobili.size > 0}">
+				<div class="row container d-flex justify-content-center text-center gy-3">
+					<div th:each="annuncio : ${listaImmobili}" class="col-6">
+						<div class="card" style="width: 300px; min-height: 365px; border-radius: 10%;">
+							<img style="border-top-left-radius:10%; border-top-right-radius:10%"
+								src="https://picsum.photos/300/200" alt="picture here">
+							<div class="card-body text-center">
+								<h5 th:text="${annuncio.titolo}" class="card-title"></h5>
+								<p th:text="|${annuncio.canone} €|"class="card-text"></p>
+								<div style="position: absolute; bottom: 10px; left: 40%;">
+									<a th:href="@{|/GenerationsImmobiliare/home/dettaglioAnnuncio/${annuncio.id}|}" class="btn btn-primary lg-btn">Info</a>
+								</div >
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div th:replace="fragments/head :: scripts"></div>
+</body>
+<footer class="container-fluid bg-dark text-light" style="position: relative; bottom: 0;">
+	<div class="row d-flex justify-content-between text-center p-3">
+		<div class="col-4">
+			<p>info social</p>
+			<p>info social</p>
+			<p>info social</p>
+
+
+		</div>
+		<div class="col-4">
+			<p>altre info</p>
+			<p>altre info</p>
+			<p>altre info</p>
+
+		</div>
+		<div class="col-4">
+			<p>telefono email link 1</p>
+			<p>telefono email link 2</p>
+			<p>telefono email link 3</p>
+
+
+		</div>
+	</div>
+</footer>
+
+</html>

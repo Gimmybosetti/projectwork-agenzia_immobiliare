@@ -46,7 +46,13 @@ public class Immobile {
 	private LocalDateTime dataIns;
 	
 	private Boolean cancellato;
-
+	
+	@NotEmpty(message="Il titolo è obbligatorio")
+	private String titolo;
+	
+	@NotNull
+	private Integer metri;
+	
 	@NotNull(message="tipologia non deve essere null")
 	@ManyToOne
 	private Tipologia tipologia;
@@ -134,6 +140,22 @@ public class Immobile {
 
 	public void setCancellato(Boolean cancellato) {
 		this.cancellato = cancellato;
+	}
+
+	public String getTitolo() {
+		return titolo;
+	}
+
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
+	}
+
+	public Integer getMetri() {
+		return metri;
+	}
+
+	public void setMetri(Integer metri) {
+		this.metri = metri;
 	}
 
 	public Tipologia getTipologia() {
