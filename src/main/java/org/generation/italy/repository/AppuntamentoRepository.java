@@ -13,4 +13,12 @@ public interface AppuntamentoRepository extends JpaRepository<Appuntamento, Long
 			nativeQuery = true)
 	List<Appuntamento> listaAppuntamentiProssimaSettimana();
 
+
+
+	@Query (
+			value = "select * from appuntamento a group by agente_id;",
+			countQuery = "select count(a.id) from appuntamento a",
+			nativeQuery = true)
+	List<Appuntamento> listaAppuntamentiOrdinatiPerAgente();
+
 }

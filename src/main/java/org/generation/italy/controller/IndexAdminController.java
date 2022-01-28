@@ -38,6 +38,7 @@ public class IndexAdminController {
 		model.addAttribute("listaAgenti", agenteService.trovaAgente());
 		model.addAttribute("listaClienti", clienteService.trovaCliente());
 		model.addAttribute("listaImmobili", service.trovaImmobile());
+		model.addAttribute("listaAppuntamentiOrdinatiPerAgente", appuntamentoService.listaAppuntamentiOrdinatiPerAgente());
 		model.addAttribute("listaAppuntamentiProssimaSettimana", appuntamentoService.listaAppuntamentiProssimaSettimana());
 		return "/amministrazione/indexAdministration";
 	}

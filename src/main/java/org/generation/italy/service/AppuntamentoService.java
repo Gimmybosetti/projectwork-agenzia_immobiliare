@@ -7,6 +7,7 @@ import org.generation.italy.repository.AppuntamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class AppuntamentoService {
 	
@@ -19,6 +20,10 @@ public class AppuntamentoService {
 	
 	public List<Appuntamento> listaAppuntamentiProssimaSettimana(){
 		return repository.listaAppuntamentiProssimaSettimana();
+	}
+	
+	public List<Appuntamento> listaAppuntamentiOrdinatiPerAgente(){
+		return repository.listaAppuntamentiOrdinatiPerAgente();
 	}
 
 }
