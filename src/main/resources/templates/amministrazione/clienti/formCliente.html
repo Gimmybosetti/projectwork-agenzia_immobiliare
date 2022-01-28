@@ -3,22 +3,22 @@
 <html>
 
 <head>
-	<div th:replace="fragments/head :: headTags">
-	</div>
-	<title>Form Clienti</title>
+<div th:replace="fragments/head :: headTags"></div>
+<title>Form Clienti</title>
 </head>
 
 <body>
 	<h1 class="mx-5 text-center">Clienti</h1>
 	<hr>
 	<form id="cliente-form" th:object="${cliente}"
-		th:action="${modifica} ? @{/administration/clienti/modifica/{id}(id=${cliente.id})} : @{/administration/clienti/crea}" method="post">
+		th:action="${modifica} ? @{/administration/clienti/modifica/{id}(id=${cliente.id})} : @{/administration/clienti/crea}"
+		method="post">
 		<div class="row">
 			<div class="col-6 offset-3">
 				<div class="row mx-4">
 					<div class="col-6">
-						<label class="form-label" for="nome">Nome</label>
-						<input type="text" class="form-control" id="nome" th:field="*{nome}"
+						<label class="form-label" for="nome">Nome</label> <input
+							type="text" class="form-control" id="nome" th:field="*{nome}"
 							th:errorClass="is-invalid">
 						<div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
 							<ul>
@@ -27,46 +27,52 @@
 						</div>
 					</div>
 					<div class="col-6">
-						<label class="form-label" for="cognome">Cognome</label>
-						<input type="text" class="form-control" id="cognome" th:field="*{cognome}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('cognome')}" class="invalid-feedback">
+						<label class="form-label" for="cognome">Cognome</label> <input
+							type="text" class="form-control" id="cognome"
+							th:field="*{cognome}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('cognome')}"
+							class="invalid-feedback">
 							<ul>
 								<li th:each="err:${#fields.errors('cognome')}" th:text="${err}"></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-6">
-						<label class="form-label" for="email">Email</label>
-						<input type="email" placeholder="example@gmail.com" class="form-control" id="email" th:field="*{email}"
-							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('email')}" class="invalid-feedback">
+						<label class="form-label" for="email">Email</label> <input
+							type="email" placeholder="example@gmail.com" class="form-control"
+							id="email" th:field="*{email}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('email')}"
+							class="invalid-feedback">
 							<ul>
 								<li th:each="err:${#fields.errors('email')}" th:text="${err}"></li>
 							</ul>
 						</div>
 					</div>
 					<div class="col-6">
-						<label class="form-label" for="phone">Phone</label>
-						<input type="text" class="form-control" id="phone" th:field="*{phone}"
+						<label class="form-label" for="phone">Phone</label> <input
+							type="text" class="form-control" id="phone" th:field="*{phone}"
 							th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('phone')}" class="invalid-feedback">
+						<div th:if="${#fields.hasErrors('phone')}"
+							class="invalid-feedback">
 							<ul>
 								<li th:each="err:${#fields.errors('phone')}" th:text="${err}"></li>
 							</ul>
 						</div>
 					</div>
-					<div class="col-12 d-flex justify-content-between">
-						<button class="btn btn-primary mt-3" type="submit"><i class="fas fa-check"></i> Salva</button>
-						<a class="btn btn-primary mt-3" th:href="@{/administration/clienti}"><i class="fas fa-times"></i> Annulla</a>
+					<div class="col-12 d-flex justify-content-between mb-5">
+						<button class="btn btn-primary mt-3" type="submit">
+							<i class="fas fa-check"></i> Salva
+						</button>
+						<a class="btn btn-primary mt-3"
+							th:href="@{/administration/clienti}"><i class="fas fa-times"></i>
+							Annulla</a>
 					</div>
 				</div>
 			</div>
-
-
+		</div>
 	</form>
 	<div th:replace="fragments/head ::scripts"></div>
 
 </body>
-
+<div th:replace="/fragments/footer :: foot"></div>
 </html>

@@ -1,15 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
-
 <head>
-	<div th:replace="fragments/head :: headTags">
-	</div>
-	<title>Immobili</title>
+<div th:replace="fragments/head :: headTags"></div>
+<title>Immobili</title>
 </head>
-<div th:replace="fragments/navbarAdmin :: nav"></div>
 <header>
-
+	<div th:replace="fragments/navbarAdmin :: nav"></div>
 </header>
 
 <body>
@@ -17,35 +13,42 @@
 	<hr />
 	<div class="container">
 		<div class="mb-3 mx-5 d-flex justify-content-between">
-			<a class="btn btn-primary" th:href="@{/administration/agenti/crea}"><i class="fas fa-plus"></i> Aggiungi Agente</a>
+			<a class="btn btn-primary" th:href="@{/administration/agenti/crea}"><i
+				class="fas fa-plus"></i> Aggiungi Agente</a>
 		</div>
-		<table class="table" th:if="${listaAgenti.size > 0}">
-			<thead>
-				<tr>
-					<th>Nome</th>
-					<th>Cognome</th>
-				</tr >
-			</thead>
-			<tbody>
-				<tr th:each="agente : ${listaAgenti}">
-					<td th:text="${agente.nome}"></td>
-					<td th:text="${agente.cognome}"></td>
-					<td>
-						<a class="btn btn-primary" th:href="@{|/administration/agenti/modifica/${agente.id}|}"><i class="fas fa-edit"></i></a>
-						
-					</td>
+		<div
+			class="row row-cols-1 row-cols-md-3 g-4 my-5 d-flex justify-content-between">
+			<div th:each="agente : ${listaAgenti}">
+				<div class="col text-center">
+					<div class="card" style="width: 302px; border-radius: 10%;">
+						<img
+							style="border-top-left-radius: 10%; border-top-right-radius: 10%;"
+							src="https://images.unsplash.com/photo-1620853721068-442e16d88afc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+							class="card-img-top" alt="foto-1">
+						<div class="card-body">
+							<h5 class="card-title">
+								<span th:text="${agente.nome}" th:remove="tag">Nome</span> <span
+									class="mx-1"> </span> <span th:text="${agente.cognome}"
+									th:remove="tag">Cognome</span>
+							</h5>
+							<a class="btn btn-primary"
+								th:href="@{|/administration/agenti/modifica/${agente.id}|}"><i
+								class="fas fa-edit"></i></a>
+						</div>
 
-				</tr>
-			</tbody>
+					</div>
+				</div>
+			</div>
 
-		</table>
-
-		<div class="alert alert-primary" role="alert" th:unless="${listaAgenti.size>0}">
-			Non ci sono agenti nel database
 		</div>
+
+		<div class="alert alert-primary" role="alert"
+			th:unless="${listaAgenti.size>0}">Non ci sono agenti nel
+			database</div>
 	</div>
 	<div th:replace="fragments/head :: scripts"></div>
 
 </body>
+<div th:replace="/fragments/footer :: foot"></div>
 
 </html>

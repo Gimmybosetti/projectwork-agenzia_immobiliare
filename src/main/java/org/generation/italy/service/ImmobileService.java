@@ -34,4 +34,12 @@ public class ImmobileService {
 		immobile.setDataIns(immToUpdate.getDataIns());
 		return repository.save(immobile);
 	}
+	
+	public List<Immobile> listaImmobiliRecenti(){
+		return repository.listaImmobiliRecenti();
+	}
+	
+	public List<Immobile> listaImmobiliPiuVisualizzati(){
+		return repository.listaImmobiliPiuVisualizzati();
+	}
 }
