@@ -20,8 +20,7 @@ public class Immobile {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
-	private String titolo;
+	
 	
 	@NotNull
 	private Integer canone;
@@ -133,13 +132,7 @@ public class Immobile {
 		return libero;
 	}
 
-	public String getTitolo() {
-		return titolo;
-	}
-
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
-	}
+	
 
 	public void setLibero(Boolean libero) {
 		this.libero = libero;

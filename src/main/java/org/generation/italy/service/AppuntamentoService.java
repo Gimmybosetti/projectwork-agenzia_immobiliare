@@ -22,8 +22,5 @@ public class AppuntamentoService {
 		return repository.listaAppuntamentiProssimaSettimana();
 	}
 	
-	public List<Appuntamento> listaAppuntamentiOrdinatiPerAgente(){
-		return repository.listaAppuntamentiOrdinatiPerAgente();
-	}
-
+	
 }

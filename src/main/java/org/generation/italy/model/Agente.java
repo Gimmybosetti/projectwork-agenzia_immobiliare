@@ -1,9 +1,12 @@
 package org.generation.italy.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -22,6 +25,10 @@ public class Agente {
 	@NotNull
 	private String cognome;
 
+	@OneToMany(mappedBy= "agente")
+	private List<Appuntamento> appuntamenti;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -44,6 +51,14 @@ public class Agente {
 
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
+	}
+
+	public List<Appuntamento> getAppuntamenti() {
+		return appuntamenti;
+	}
+
+	public void setAppuntamenti(List<Appuntamento> appuntamenti) {
+		this.appuntamenti = appuntamenti;
 	}
 
 }
