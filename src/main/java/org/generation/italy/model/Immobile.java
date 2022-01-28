@@ -21,9 +21,6 @@ public class Immobile {
 	private Long id;
 	
 	@NotNull
-	private String titolo;
-	
-	@NotNull
 	private Integer canone;
 	
 	@NotNull
@@ -131,14 +128,6 @@ public class Immobile {
 
 	public Boolean getLibero() {
 		return libero;
-	}
-
-	public String getTitolo() {
-		return titolo;
-	}
-
-	public void setTitolo(String titolo) {
-		this.titolo = titolo;
 	}
 
 	public void setLibero(Boolean libero) {

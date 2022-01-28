@@ -74,10 +74,10 @@
 					<div class="col-9">
 						<div class="row ">
 							<div class="col-2">
-								<span style="font-size:larger; font-weight:300;" th:text="|${annuncio.canone} €|"></span>
+								<i class="fas fa-euro-sign me-1"></i><span style="font-size:larger; font-weight:300;" th:text="${annuncio.canone}"></span>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
-								<ion-icon class="mt-1 me-2" name="expand-outline"></ion-icon><p class="font" th:text="|${annuncio.metri} mq|"></p>
+								<i class="fas fa-expand-arrows-alt mt-1 me-2"></i></ion-icon><p class="font" th:text="|${annuncio.metri} mq|"></p>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
 								<i class="fas fa-bath mt-1 me-2"></i><p class="font" th:text="${annuncio.nBagni}"></p>
@@ -91,13 +91,13 @@
 						</div>
 						<div class="row ">
 							<div class="col-2">
-								<span style="font-size:larger; font-weight:300;" th:text="${annuncio.nBalconi}"></span>
+								<i class="fas fa-store mt-1 me-2"></i><span style="font-size:larger; font-weight:300;" th:text="${annuncio.nBalconi}"></span>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
 								<i class="fas fa-door-closed mt-1 me-2"></i><p class="font" th:text="${annuncio.nStanze}"></p>
 							</div>
-							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-bolt mt-1 me-2"></i><p class="font" th:text="${annuncio.tipologia.descrizione}"></p>
+							<div class="col-4 border-start border-primary d-flex">
+								<i class="fab fa-houzz mt-1 me-2"></i><p class="font" th:text="${annuncio.tipologia.descrizione}"></p>
 							</div>
 							<div class="col-4 border-start border-primary d-flex">
 								<i class="fas fa-user-tie mt-1 me-2"></i><p class="font" th:text="|${annuncio.agente.nome} ${annuncio.agente.cognome}|"></p>
@@ -116,7 +116,7 @@
 				<div class="row">
 					<div class="col-8">
 						<div class="buttons">
-							<button type="button" class="btn" style="color: cornflowerblue;">CONTATTACI</button>
+							<a type="button" th:href="@{/GenerationsImmobiliare/home/annunci/prenotaAppuntamento/{id}(id=${annuncio.id})}" th:text="CONTATTACI" class="btn" style="color: cornflowerblue;"></a>
 							<button id="heart" type="button" class="btn" style="color: cornflowerblue;"><i
 									class="fas fa-heart"></i></button>
 						</div>
