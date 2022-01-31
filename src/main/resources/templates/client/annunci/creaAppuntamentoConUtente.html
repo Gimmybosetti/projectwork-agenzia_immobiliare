@@ -1,0 +1,108 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div th:replace="fragments/head :: headTags"></div>
+<title>Form Appuntamento</title>
+</head>
+<div th:replace="fragments/navbarAnnunci :: nav"></div>
+<body style="overflow-x:hidden">
+	<h1 class="mx-5 text-center">Appuntamento</h1>
+	<hr>
+	<form id="appuntamento-form" th:object="${appuntamentoTrans}"
+		th:action="@{/GenerationsImmobiliare/home/dettaglio/creaAppuntamentoConUtente/{id}(id=${immobile.id})}"
+		method="post">
+		<ul>
+			<li th:each="err : ${#fields.allErrors()}" th:text="${err}"
+				class="text-danger"></li>
+		</ul>
+		<div class="row py-3">
+			<div class="col-8 offset-2 my-3">
+				<div class="row mx-4">
+					<div class="col-4">
+						<label class="form-label" for="data">Data</label>
+						<input type="date" class="form-control" id="data" name="data"
+							th:field="*{data}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('data')}"
+							class="invalid-feedback">
+							<ul>
+								<li th:each="err:${#fields.errors('data')}"
+									th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-2">
+						<label class="form-label" for="selectOrario">Orario</label>
+						<select class="form-select" aria-label="Orario"
+							id="selectOrario" th:field="*{slotOrari.descrizione}">
+							<option value="">Scegli Orario</option>
+							<option th:each="orario : ${orari}"
+								th:value="${orario.id}" th:text="${orario.descrizione}"></option>
+						</select>
+					</div>
+					<div class="col-6">
+						<label class="form-label" for="email">Email utente</label>
+						<input type="text" class="form-control" id="email"
+							th:field="*{email}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('email')}"
+							class="invalid-feedback">
+							<ul>
+								<li th:each="err:${#fields.errors('email')}"
+									th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-6">
+						<label class="form-label" for="nome">Nome</label>
+						<input type="text" class="form-control" id="nome"
+							th:field="*{nome}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('nome')}"
+							class="invalid-feedback">
+							<ul>
+								<li th:each="err:${#fields.errors('nome')}"
+									th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-6">
+						<label class="form-label" for="cognome">Cognome</label>
+						<input type="text" class="form-control" id="cognome"
+							th:field="*{cognome}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('cognome')}"
+							class="invalid-feedback">
+							<ul>
+								<li th:each="err:${#fields.errors('cognome')}"
+									th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-6">
+						<label class="form-label" for="phone">Telefono</label>
+						<input type="text" class="form-control" id="phone"
+							th:field="*{phone}" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('phone')}"
+							class="invalid-feedback">
+							<ul>
+								<li th:each="err:${#fields.errors('phone')}"
+									th:text="${err}"></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-12 d-flex justify-content-between">
+						<button class="btn btn-primary mt-3" type="submit">
+							<i class="fas fa-check"></i> Salva
+						</button>
+						<a class="btn btn-primary mt-3"
+							th:href="@{/GenerationsImmobiliare/home/dettaglioAnnuncio/{id}(id=${immobile.id})}"><i class="fas fa-times"></i>
+							Annulla</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</form>
+	<div th:replace="fragments/head ::scripts"></div>
+
+</body >
+<div th:replace="/fragments/footer :: foot"></div>
+
+</html>

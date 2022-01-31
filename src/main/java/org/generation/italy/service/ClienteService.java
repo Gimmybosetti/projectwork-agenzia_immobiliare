@@ -29,4 +29,8 @@ public class ClienteService {
 		return repository.save(cliente);
 	}
 	
+	public Cliente findByEmail(String email) {
+		return repository.findByEmailContainingIgnoreCase(email);
+	}
+	
 }

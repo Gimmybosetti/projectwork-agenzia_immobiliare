@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<div th:replace="fragments/head :: head">
@@ -7,11 +7,12 @@
 	</div>
 	<title>Annunci Immobili</title>
 </head>
+<div th:replace="fragments/navbarAnnunci :: nav"></div>
 <header>
-	<div th:replace="fragments/navbarAnnunci :: nav"></div>
+	
 </header>
 
-<body class="container-fluid" style="background-color: rgb(206, 232, 248);">
+<body style="background-color: rgb(206, 232, 248);">
 	<!-- Search button nel div verde -->
 	<section class="container-fluid mt-3">
 		<div class="row mb-3 d-flex">

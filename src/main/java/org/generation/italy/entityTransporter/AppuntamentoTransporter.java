@@ -1,43 +1,66 @@
-package org.generation.italy.model;
+package org.generation.italy.entityTransporter;
 
 import java.time.LocalDate;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import org.generation.italy.model.Agente;
+import org.generation.italy.model.Immobile;
+import org.generation.italy.model.SlotOrari;
 
-
-@Entity
-public class Appuntamento {
+public class AppuntamentoTransporter {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "immobile_id")
     private Immobile immobile;
-
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;    
+    
+    @NotEmpty(message="L'email è obbligatoria")
+    private String email;
     
     @NotNull
     private LocalDate data;
     
-    @ManyToOne
     private Agente agente;
     
-    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
-    @ManyToOne
+    @NotNull
     private SlotOrari slotOrari;
+    
+	private String nome;
+    
+	private String cognome;
+	
+	private String phone;
+	
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
 	public Long getId() {
 		return id;
@@ -55,12 +78,12 @@ public class Appuntamento {
 		this.immobile = immobile;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public LocalDate getData() {
@@ -86,6 +109,5 @@ public class Appuntamento {
 	public void setAgente(Agente agente) {
 		this.agente = agente;
 	}
-    
+	
 }
-

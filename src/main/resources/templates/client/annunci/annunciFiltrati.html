@@ -10,9 +10,9 @@
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	<title>Lista Annunci</title>
 </head>
-
+<div th:replace="fragments/navbarAnnunci :: nav"></div>
 <header>
-	<div th:replace="fragments/navbarAnnunci :: nav"></div>
+	
 </header>
 
 <body style="background-color: rgb(206, 232, 248);">
@@ -67,7 +67,7 @@
 			</div>
 			<div class="col-8">
 				<div class="row mb-3 ">
-					<a th:href="@{/GenerationsImmobiliare/home/dettaglioAnnuncio/{id}(id=${annuncio.id})}"><span
+					<a th:href="@{/GenerationsImmobiliare/home/annunci/dettaglioAnnuncio/{id}(id=${annuncio.id})}"><span
 							th:text="${annuncio.titolo}" style="font-size: larger; color:black"></span></a>
 				</div>
 				<div class="row ">
@@ -116,7 +116,7 @@
 				<div class="row">
 					<div class="col-8">
 						<div class="buttons">
-							<a type="button" th:href="@{/GenerationsImmobiliare/home/annunci/prenotaAppuntamento/{id}(id=${annuncio.id})}" th:text="CONTATTACI" class="btn" style="color: cornflowerblue;"></a>
+							<a type="button" th:href="@{/GenerationsImmobiliare/home/annunci/creaAppuntamento/{id}(id=${annuncio.id})}" th:text="CONTATTACI" class="btn" style="color: cornflowerblue;"></a>
 							<button id="heart" type="button" class="btn" style="color: cornflowerblue;"><i
 									class="fas fa-heart"></i></button>
 						</div>

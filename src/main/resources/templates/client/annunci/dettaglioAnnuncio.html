@@ -4,8 +4,9 @@
 	<div th:replace="fragments/head :: head"></div>
 	<title th:text="${immobile.titolo}"></title>
 </head>
+<div th:replace="fragments/navbarAnnunci :: nav"></div>
 <header>
-	<div th:replace="fragments/navbarAnnunci :: nav"></div>
+	
 </header>
 
 <body>
@@ -70,11 +71,12 @@
 				<div class="container d-flex justify-content-between">
 					<div class="mb-3 mx-5">
 						<a type="button"
-							th:href="@{/GenerationsImmobiliare/home/dettaglio/prenotaAppuntamento/{id}(id=${immobile.id})}"
+							th:href="@{/GenerationsImmobiliare/home/dettaglio/creaAppuntamento/{id}(id=${immobile.id})}"
 							th:text="CONTATTACI" class="btn btn-outline-primary mt-3"></a>
 					</div>
 					<div>
-						<a class="btn btn-primary mt-3" th:href="@{/GenerationsImmobiliare/home/annunciFiltrati}"><i
+						<a class="btn btn-primary mt-3" th:href="${home} ? @{/GenerationsImmobiliare/home} : 
+							@{/GenerationsImmobiliare/home/annunciFiltrati}"><i
 							class="fas fa-times"></i>
 							Annulla</a>
 					</div>
