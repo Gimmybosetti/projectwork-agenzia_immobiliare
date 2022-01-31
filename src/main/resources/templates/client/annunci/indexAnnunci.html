@@ -4,6 +4,7 @@
 <head>
 	<div th:replace="fragments/head :: head">
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<link rel="stylesheet" th:href="@{/style/indexstyle.css}" />
 	</div>
 	<title>Annunci Immobili</title>
 </head>
@@ -48,7 +49,7 @@
 		<div class="row mb-3">
 			<div class="col-6 text-center">
 				<div style="background-color: bisque; width: 100%;">
-					<img class="img-fluid" style="position: static;" src="https://i.stack.imgur.com/7LLX9.jpg"
+					<img class="img-fluid" style="position: relative;" src="https://i.stack.imgur.com/7LLX9.jpg"
 						alt="immagine Google random">
 				</div>
 			</div>
@@ -73,29 +74,6 @@
 	</section>
 	<div th:replace="fragments/head :: scripts"></div>
 </body>
-<footer class="container-fluid bg-dark text-light" style="position: relative; bottom: 0;">
-	<div class="row d-flex justify-content-between text-center p-3">
-		<div class="col-4">
-			<p>info social</p>
-			<p>info social</p>
-			<p>info social</p>
-
-
-		</div>
-		<div class="col-4">
-			<p>altre info</p>
-			<p>altre info</p>
-			<p>altre info</p>
-
-		</div>
-		<div class="col-4">
-			<p>telefono email link 1</p>
-			<p>telefono email link 2</p>
-			<p>telefono email link 3</p>
-
-
-		</div>
-	</div>
-</footer>
+<div th:replace="/fragments/footer :: foot"></div>
 
 </html>

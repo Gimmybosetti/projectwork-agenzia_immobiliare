@@ -24,3 +24,14 @@ a {
     color: aliceblue;
     font-size: large;
 }
+
+body {
+    min-height:100vh;
+    position: relative;
+ 
+}
+
+footer {
+    position: absolute;
+    top:100%;
+}
