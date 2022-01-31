@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <div th:replace="fragments/head :: headTags"></div>
+<link rel="stylesheet" th:href="@{/style/agentistyle.css}">
 <title>Immobili</title>
 </head>
 <header>
 	<div th:replace="fragments/navbarAdmin :: nav"></div>
 </header>
 
-<body>
+<body style="position:relative;">
 	<h1 class="text-center">Agenti</h1>
 	<hr />
 	<div class="container">
@@ -17,7 +18,7 @@
 				class="fas fa-plus"></i> Aggiungi Agente</a>
 		</div>
 		<div
-			class="row row-cols-1 row-cols-md-3 g-4 my-5 d-flex justify-content-between">
+			class="row row-cols-1 row-cols-md-3 g-4 my-5 d-flex justify-content-evenly ">
 			<div th:each="agente : ${listaAgenti}">
 				<div class="col text-center">
 					<div class="card" style="width: 302px; border-radius: 10%;">

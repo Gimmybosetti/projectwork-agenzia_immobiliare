@@ -4,6 +4,7 @@
 
 <head>
 	<div th:replace="fragments/head :: headTags">
+	<link rel="stylesheet" th:href="@{/style/immobiliadminstyle.css}" />
 	</div>
 	<title>Immobili</title>
 </head>
@@ -51,7 +52,7 @@
 					<td th:text="${item.nStanze}"></td>
 					<td th:text="${item.classeEnergetica.descrizione}"></td>
 					<td th:text="|${item.agente.nome} ${item.agente.cognome}|"></td>
-					<td th:text"${item.titolo}"></td>
+					<td th:text="${item.titolo}"></td>
 					<td th:text="${item.metri}"></td>
 					<td class="text-center" th:if="${item.numVisual}" th:text="${item.numVisual}"></td>
 					<td class="text-center" th:unless="${item.numVisual}">0</td>

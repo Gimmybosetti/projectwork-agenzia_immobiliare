@@ -4,6 +4,7 @@
 
 <head>
 <div th:replace="fragments/head :: headTags"></div>
+<link rel="stylesheet" th:href="@{/style/agentistyle.css}">
 <title>Form Agenti</title>
 </head>
 
@@ -13,7 +14,7 @@
 		<div class="border text-center "
 			style="height: 300px; background-color: blue; overflow: hidden;">
 			<!-- Modifica il valore di pixel di top se vuoi alzare o abbassare quale parte della foto viene mostrata -->
-			<img class="w-100" style="position:relative; top:-250px;"
+			<img class="w-100" style="position: relative; top: -250px;"
 				src="https://images.unsplash.com/photo-1626178793926-22b28830aa30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
 				alt="foto-sfondo-1">
 
@@ -40,54 +41,54 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-8" style="position:relative;">
-						<div class="row justify-content-center" style="position:absolute; top:50%; transform: translate(0, -50%)">
+					<div class="col-8" style="position: relative;">
+						<div class="row justify-content-center"
+							style="position: absolute; top: 50%; transform: translate(0, -50%)">
 
-							
-								<div class="col-6 offset-1">
-									<div class="row">
-										<div class="col-6">
-											<label class="form-label" for="nome">Nome</label> <input
-												type="text" class="form-control" id="nome"
-												th:field="*{nome}" th:errorClass="is-invalid">
-											<div th:if="${#fields.hasErrors('nome')}"
-												class="invalid-feedback">
-												<ul>
-													<li th:each="err:${#fields.errors('nome')}"
-														th:text="${err}"></li>
-												</ul>
-											</div>
-										</div>
-										<div class="col-6">
-											<label class="form-label" for="cognome">Cognome</label> <input
-												type="text" class="form-control" id="cognome"
-												th:field="*{cognome}" th:errorClass="is-invalid">
-											<div th:if="${#fields.hasErrors('cognome')}"
-												class="invalid-feedback">
-												<ul>
-													<li th:each="err:${#fields.errors('cognome')}"
-														th:text="${err}"></li>
-												</ul>
-											</div>
-										</div>
-										<div class="col-12 d-flex justify-content-between">
-											<button class="btn btn-primary mt-3" type="submit">
-												<i class="fas fa-check"></i> Salva
-											</button>
-											<a class="btn btn-primary mt-3"
-												th:href="@{/administration/agenti}"><i
-												class="fas fa-times"></i> Annulla</a>
+							<div class="col-6 offset-1">
+								<div class="row">
+									<div class="col-6">
+										<label class="form-label" for="nome">Nome</label> <input
+											type="text" class="form-control" id="nome" th:field="*{nome}"
+											th:errorClass="is-invalid">
+										<div th:if="${#fields.hasErrors('nome')}"
+											class="invalid-feedback">
+											<ul>
+												<li th:each="err:${#fields.errors('nome')}" th:text="${err}"></li>
+											</ul>
 										</div>
 									</div>
+									<div class="col-6">
+										<label class="form-label" for="cognome">Cognome</label> <input
+											type="text" class="form-control" id="cognome"
+											th:field="*{cognome}" th:errorClass="is-invalid">
+										<div th:if="${#fields.hasErrors('cognome')}"
+											class="invalid-feedback">
+											<ul>
+												<li th:each="err:${#fields.errors('cognome')}"
+													th:text="${err}"></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-12 d-flex justify-content-between">
+										<button class="btn btn-primary mt-3" type="submit">
+											<i class="fas fa-check"></i> Salva
+										</button>
+										<a class="btn btn-primary mt-3"
+											th:href="@{/administration/agenti}"><i
+											class="fas fa-times"></i> Annulla</a>
+									</div>
 								</div>
-							
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</form>
 		</div>
 	</section>
-<div th:replace="fragments/head ::scripts"></div>
+	<div th:replace="fragments/head ::scripts"></div>
+
 
 </body>
 

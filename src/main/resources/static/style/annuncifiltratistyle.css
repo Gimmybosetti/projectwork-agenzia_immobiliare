@@ -1,8 +1,15 @@
-a:link{
-    color: black;
-    text-decoration:none;
-
+body {
+	background-color: rgb(184, 223, 248);
+	position:relative;
 }
+
+footer {
+	position: absolute;
+	top: 100%;
+	margin-top: 100px;
+}
+
+
 a:visited{
     color: black;
     text-decoration:none;
