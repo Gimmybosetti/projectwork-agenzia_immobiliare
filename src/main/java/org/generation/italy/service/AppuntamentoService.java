@@ -8,6 +8,8 @@ import org.generation.italy.model.Cliente;
 import org.generation.italy.model.Immobile;
 import org.generation.italy.repository.AppuntamentoRepository;
 import org.generation.italy.repository.ClienteRepository;
+import org.generation.italy.repository.InterfacciaConteggio;
+import org.generation.italy.repository.InterfacciaConteggioImmobili;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +55,13 @@ public class AppuntamentoService {
 		}
 		appuntamento.setCliente(cliente);
 		return repository.save(appuntamento);
+	}
+	
+	public List<InterfacciaConteggio> AppuntamentiTotali() {
+		return repository.listaAppuntamentiConteggioAgente();
+	}
+	public List<InterfacciaConteggioImmobili> ConteggioImmobiliPerAgente() {
+		return repository.listaAppuntamentiConteggioAgenteImmobili();
 	}
 	
 	

@@ -26,7 +26,15 @@ public class IndexAdminController {
 		model.addAttribute("listaImmobiliRecenti", service.listaImmobiliRecenti());
 		model.addAttribute("listaImmobiliPiuVisualizzati", service.listaImmobiliPiuVisualizzati());
 		model.addAttribute("listaAppuntamentiProssimaSettimana", appuntamentoService.listaAppuntamentiProssimaSettimana());
+		model.addAttribute("listaAppuntamentiTotali", appuntamentoService.AppuntamentiTotali());
+		model.addAttribute("listaImmobiliContatiPerAgente", appuntamentoService.ConteggioImmobiliPerAgente());
 		return "/amministrazione/indexAdministration";
 	}
 
 }
+
+
+
+
+
+
