@@ -40,9 +40,8 @@ public class AppuntamentoService {
 		return repository.listaAppuntamentiProssimaSettimana();
 	}
 	
-	public Appuntamento salvaAppuntamento(AppuntamentoTransporter appuntamentoTrans, Long id, List<Appuntamento> app) throws Exception {
+	public Appuntamento salvaAppuntamento(AppuntamentoTransporter appuntamentoTrans, Long id) throws Exception {
 		Appuntamento appuntamento = new Appuntamento();
-		
 		Immobile immobile = immServ.prendiPerId(id);
 		appuntamento.setAgente(immobile.getAgente());
 		appuntamento.setData(appuntamentoTrans.getData());
@@ -55,7 +54,7 @@ public class AppuntamentoService {
 		}
 		appuntamento.setCliente(cliente);
 		return repository.save(appuntamento);
-	}
+}
 	
 	public List<InterfacciaConteggio> AppuntamentiTotali() {
 		return repository.listaAppuntamentiConteggioAgente();

@@ -74,22 +74,37 @@ public class AnnunciController {
 	}
 	
 	@PostMapping("/dettaglio/creaAppuntamento/{immobileId}")
-	public String prenotaAppuntamentoD (@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans, 
+	public String prenotaAppuntamentoD(
+			@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans,
 			@PathVariable("immobileId") Long id, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			model.addAttribute("orari", orariService.trovaSlotOrario());
 			model.addAttribute("clienti", clienteService.trovaCliente());
 			model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
 			model.addAttribute("immobile", service.prendiPerId(id));
 			return "/client/annunci/creaAppuntamento";
 		}
+		List<Appuntamento> app = appService.trovaAppuntamentoPerImmobile(id);
 		Cliente cliente = clienteService.findByEmail(appuntamentoTrans.getEmail());
-		if(cliente == null) {
+		if (cliente == null) {
 			return "redirect:/GenerationsImmobiliare/home/dettaglio/creaAppuntamentoConUtente/{immobileId}";
-		}else {
+		} else {
 			try {
-				List<Appuntamento> app = appService.trovaAppuntamentoPerImmobile(id);
-				appService.salvaAppuntamento(appuntamentoTrans, id, app);
+				Boolean exist = false;
+				while (exist == false) {
+					for (Appuntamento element : app) {
+						if (appuntamentoTrans.getData().equals(element.getData())
+								&& appuntamentoTrans.getSlotOrari().equals(element.getSlotOrari())) {
+							model.addAttribute("orari", orariService.trovaSlotOrario());
+							model.addAttribute("clienti", clienteService.trovaCliente());
+							model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
+							model.addAttribute("immobile", service.prendiPerId(id));
+							return "/client/annunci/creaAppuntamento";
+						}
+					}
+					exist = true;
+				}
+				appService.salvaAppuntamento(appuntamentoTrans, id);
 			} catch (Exception e) {
 				model.addAttribute("orari", orariService.trovaSlotOrario());
 				model.addAttribute("clienti", clienteService.trovaCliente());
@@ -113,27 +128,42 @@ public class AnnunciController {
 	}
 	
 	@PostMapping("/dettaglio/creaAppuntamentoConUtente/{immobileId}")
-	public String creaAppuntamentoUtente (@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans, 
+	public String creaAppuntamentoUtente(
+			@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans,
 			@PathVariable("immobileId") Long id, BindingResult bindingResult, Model model) {
-		if(bindingResult.hasErrors()) {
+		if (bindingResult.hasErrors()) {
 			model.addAttribute("orari", orariService.trovaSlotOrario());
 			model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
 			model.addAttribute("immobile", service.prendiPerId(id));
 			return "/client/annunci/creaAppuntamento";
-		}try {
-			List<Appuntamento> app = appService.trovaAppuntamentoPerImmobile(id);
-			appService.salvaAppuntamento(appuntamentoTrans, id, app);
-			} catch (Exception e) {
-				model.addAttribute("orari", orariService.trovaSlotOrario());
-				model.addAttribute("clienti", clienteService.trovaCliente());
-				model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
-				model.addAttribute("immobile", service.prendiPerId(id));
-				e.printStackTrace();
-				return "/client/annunci/creaAppuntamentoConUtente";
-			}
-			return "redirect:/GenerationsImmobiliare/home";
 		}
-	
-}
+		List<Appuntamento> app = appService.trovaAppuntamentoPerImmobile(id);
+		try {
+			Boolean exist = false;
+			while (exist == false) {
+				for (Appuntamento element : app) {
+					if (appuntamentoTrans.getData().equals(element.getData())
+							&& appuntamentoTrans.getSlotOrari().equals(element.getSlotOrari())) {
+						model.addAttribute("orari", orariService.trovaSlotOrario());
+						model.addAttribute("clienti", clienteService.trovaCliente());
+						model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
+						model.addAttribute("immobile", service.prendiPerId(id));
+						return "/client/annunci/creaAppuntamentoConUtente";
+					}
+				}
+				exist = true;
+			}
+			appService.salvaAppuntamento(appuntamentoTrans, id);
+		} catch (Exception e) {
+			model.addAttribute("orari", orariService.trovaSlotOrario());
+			model.addAttribute("clienti", clienteService.trovaCliente());
+			model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
+			model.addAttribute("immobile", service.prendiPerId(id));
+			e.printStackTrace();
+			return "/client/annunci/creaAppuntamentoConUtente";
+		}
+		return "redirect:/GenerationsImmobiliare/home";
+	}
 
+}
 
