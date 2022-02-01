@@ -13,6 +13,8 @@ public interface AppuntamentoRepository extends JpaRepository<Appuntamento, Long
 			nativeQuery = true)
 	List<Appuntamento> listaAppuntamentiProssimaSettimana();
 
+	List<Appuntamento> findAllById(Long id);
+
 
 
 	

@@ -1,8 +1,11 @@
 package org.generation.italy.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.generation.italy.entityTransporter.AppuntamentoTransporter;
+import org.generation.italy.model.Appuntamento;
 import org.generation.italy.model.Cliente;
 import org.generation.italy.service.AppuntamentoService;
 import org.generation.italy.service.ClienteService;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @Controller
 @RequestMapping("/GenerationsImmobiliare/home")
@@ -60,8 +64,8 @@ public class AnnunciController {
 		return "/client/annunci/dettaglioAnnuncio";
 	}
 	
-	@GetMapping("/dettaglio/creaAppuntamento/{id}")
-	public String appuntamentoD (@PathVariable("id") Long id, Model model) {
+	@GetMapping("/dettaglio/creaAppuntamento/{immobileId}")
+	public String appuntamentoD (@PathVariable("immobileId") Long id, Model model) {
 		model.addAttribute("orari", orariService.trovaSlotOrario());
 		model.addAttribute("clienti", clienteService.trovaCliente());
 		model.addAttribute("immobile", service.prendiPerId(id));
@@ -69,8 +73,9 @@ public class AnnunciController {
 		return "/client/annunci/creaAppuntamento";
 	}
 	
-	@PostMapping("/dettaglio/creaAppuntamento/{id}")
-	public String prenotaAppuntamentoD (@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans, @PathVariable("id") Long id, BindingResult bindingResult, Model model) {
+	@PostMapping("/dettaglio/creaAppuntamento/{immobileId}")
+	public String prenotaAppuntamentoD (@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans, 
+			@PathVariable("immobileId") Long id, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("orari", orariService.trovaSlotOrario());
 			model.addAttribute("clienti", clienteService.trovaCliente());
@@ -80,10 +85,11 @@ public class AnnunciController {
 		}
 		Cliente cliente = clienteService.findByEmail(appuntamentoTrans.getEmail());
 		if(cliente == null) {
-			return "redirect:/GenerationsImmobiliare/home/dettaglio/creaAppuntamentoConUtente/{id}";
+			return "redirect:/GenerationsImmobiliare/home/dettaglio/creaAppuntamentoConUtente/{immobileId}";
 		}else {
 			try {
-				appService.salvaAppuntamento(appuntamentoTrans);
+				List<Appuntamento> app = appService.trovaAppuntamentoPerImmobile(id);
+				appService.salvaAppuntamento(appuntamentoTrans, id, app);
 			} catch (Exception e) {
 				model.addAttribute("orari", orariService.trovaSlotOrario());
 				model.addAttribute("clienti", clienteService.trovaCliente());
@@ -97,8 +103,8 @@ public class AnnunciController {
 	}
 
 	
-	@GetMapping("/dettaglio/creaAppuntamentoConUtente/{id}")
-	public String appuntamentoUtente (@PathVariable("id") Long id, Model model) {
+	@GetMapping("/dettaglio/creaAppuntamentoConUtente/{immobileId}")
+	public String appuntamentoUtente (@PathVariable("immobileId") Long id, Model model) {
 		model.addAttribute("orari", orariService.trovaSlotOrario());
 		model.addAttribute("immobile", service.prendiPerId(id));
 		model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
@@ -106,15 +112,17 @@ public class AnnunciController {
 		return "/client/annunci/creaAppuntamentoConUtente";
 	}
 	
-	@PostMapping("/dettaglio/creaAppuntamentoConUtente/{id}")
-	public String creaAppuntamentoUtente (@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans, @PathVariable("id") Long id, BindingResult bindingResult, Model model) {
+	@PostMapping("/dettaglio/creaAppuntamentoConUtente/{immobileId}")
+	public String creaAppuntamentoUtente (@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans, 
+			@PathVariable("immobileId") Long id, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("orari", orariService.trovaSlotOrario());
 			model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
 			model.addAttribute("immobile", service.prendiPerId(id));
 			return "/client/annunci/creaAppuntamento";
 		}try {
-				appService.salvaAppuntamento(appuntamentoTrans);
+			List<Appuntamento> app = appService.trovaAppuntamentoPerImmobile(id);
+			appService.salvaAppuntamento(appuntamentoTrans, id, app);
 			} catch (Exception e) {
 				model.addAttribute("orari", orariService.trovaSlotOrario());
 				model.addAttribute("clienti", clienteService.trovaCliente());

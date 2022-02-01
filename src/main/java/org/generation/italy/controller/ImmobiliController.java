@@ -1,11 +1,16 @@
 package org.generation.italy.controller;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
+import org.generation.italy.model.Foto;
 import org.generation.italy.model.Immobile;
 import org.generation.italy.service.AgenteService;
 import org.generation.italy.service.ClasseEnergeticaService;
+import org.generation.italy.service.FotoService;
 import org.generation.italy.service.ImmobileService;
 import org.generation.italy.service.TipologiaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +22,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/administration/immobili")
 public class ImmobiliController {
+	
+	@Autowired
+	private FotoService fotoServ;
 	
 	@Autowired
 	private ImmobileService service;
@@ -50,7 +60,8 @@ public class ImmobiliController {
 		return "/amministrazione/immobili/formImmobile";
 	}
 	@PostMapping("/crea")
-	public String postImmobile(@Valid @ModelAttribute("immobile") Immobile formImmobile,BindingResult bindingResult, Model model) {
+	public String postImmobile(@Valid @ModelAttribute("immobile") Immobile formImmobile, 
+			BindingResult bindingResult, @RequestParam("files") MultipartFile[] files, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("modifica", false);
 			model.addAttribute("listaImmobili", service.trovaImmobile());
@@ -59,6 +70,21 @@ public class ImmobiliController {
 			model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
 			return "/amministrazione/immobili/formImmobile";
 		}
+		try {
+	        List<Foto> fileList = new ArrayList<Foto>();
+	        for (MultipartFile file : files) {
+	        	Foto foto = new Foto();
+	            foto.setContent(file.getBytes()) ;
+	            foto.setTitolo(file.getOriginalFilename());
+	            fileList.add(foto);
+	            }
+	            fotoServ.saveAllFilesList(fileList);
+	 
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		model.addAttribute("allFiles", fotoServ.getAllFiles());
+		formImmobile.setFoto(fotoServ.getAllFiles());
 		service.salvaImmobile(formImmobile);
 		return "redirect:/administration/immobili";
 	}
@@ -70,18 +96,37 @@ public class ImmobiliController {
 		model.addAttribute("listaAgenti", agenteService.trovaAgente());
 		model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
 		model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
+		model.addAttribute("allFiles", fotoServ.getAllFiles());
 		return "/amministrazione/immobili/formImmobile";
 	}
 	@PostMapping("/modifica/{id}")
-	public String aggiornaImmobile(@Valid @ModelAttribute("immobile") Immobile formImmobile, BindingResult bindingResult, Model model) {
+	public String aggiornaImmobile(@Valid @ModelAttribute("immobile") Immobile formImmobile, 
+			@RequestParam("files") MultipartFile[] files, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("modifica", true);
 			model.addAttribute("listaImmobili", service.trovaImmobile());
 			model.addAttribute("listaAgenti", agenteService.trovaAgente());
 			model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
 			model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
+			model.addAttribute("allFiles", fotoServ.getAllFiles());
 			return "/amministrazione/immobili/formImmobile";
 		}
+		try {
+	        List<Foto> fileList = new ArrayList<Foto>();
+	        for (MultipartFile file : files) {
+	        	Foto foto = new Foto();
+	            foto.setContent(file.getBytes()) ;
+	            foto.setTitolo(file.getOriginalFilename());
+	            fileList.add(foto);
+	            }
+	            fotoServ.saveAllFilesList(fileList);
+	 
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		model.addAttribute("allFiles", fotoServ.getAllFiles());
+		formImmobile.setFoto(fotoServ.getAllFiles());
+		service.salvaImmobile(formImmobile);
 	    service.aggiorna(formImmobile);
 		return "redirect:/administration/immobili";
 	}

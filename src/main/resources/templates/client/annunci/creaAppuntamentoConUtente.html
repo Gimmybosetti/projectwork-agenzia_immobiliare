@@ -9,7 +9,7 @@
 	<h1 class="mx-5 text-center">Appuntamento</h1>
 	<hr>
 	<form id="appuntamento-form" th:object="${appuntamentoTrans}"
-		th:action="@{/GenerationsImmobiliare/home/dettaglio/creaAppuntamentoConUtente/{id}(id=${immobile.id})}"
+		th:action="@{/GenerationsImmobiliare/home/dettaglio/creaAppuntamentoConUtente/{immobileId}(immobileId=${immobile.id})}"
 		method="post">
 		<ul>
 			<li th:each="err : ${#fields.allErrors()}" th:text="${err}"
@@ -33,7 +33,7 @@
 					<div class="col-2">
 						<label class="form-label" for="selectOrario">Orario</label>
 						<select class="form-select" aria-label="Orario"
-							id="selectOrario" th:field="*{slotOrari.descrizione}">
+							id="selectOrario" th:field="*{slotOrari}">
 							<option value="">Scegli Orario</option>
 							<option th:each="orario : ${orari}"
 								th:value="${orario.id}" th:text="${orario.descrizione}"></option>
@@ -92,7 +92,7 @@
 							<i class="fas fa-check"></i> Salva
 						</button>
 						<a class="btn btn-primary mt-3"
-							th:href="@{/GenerationsImmobiliare/home/dettaglioAnnuncio/{id}(id=${immobile.id})}"><i class="fas fa-times"></i>
+							th:href="@{/GenerationsImmobiliare/home/dettaglioAnnuncio/{immobileId}(immobileId=${immobile.id})}"><i class="fas fa-times"></i>
 							Annulla</a>
 					</div>
 				</div>
