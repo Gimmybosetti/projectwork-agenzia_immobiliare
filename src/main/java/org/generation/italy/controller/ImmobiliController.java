@@ -49,6 +49,7 @@ public class ImmobiliController {
 		model.addAttribute("listaImmobili",service.trovaImmobile());
 		return "/amministrazione/immobili/indexImmobili";
 	}
+	
 	@GetMapping("/crea")
 	public String creaImmobile (Model model) {
 		model.addAttribute("modifica", false);
@@ -59,6 +60,7 @@ public class ImmobiliController {
 		model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
 		return "/amministrazione/immobili/formImmobile";
 	}
+	
 	@PostMapping("/crea")
 	public String postImmobile(@Valid @ModelAttribute("immobile") Immobile formImmobile, 
 			BindingResult bindingResult, @RequestParam("files") MultipartFile[] files, Model model) {
@@ -76,18 +78,18 @@ public class ImmobiliController {
 	        	Foto foto = new Foto();
 	            foto.setContent(file.getBytes()) ;
 	            foto.setTitolo(file.getOriginalFilename());
+	            foto.setType(file.getContentType());
 	            fileList.add(foto);
 	            }
-	            fotoServ.saveAllFilesList(fileList);
-	 
+	            //fotoServ.saveAllFilesList(fileList);
+	        formImmobile.setFoto(fileList);
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-		model.addAttribute("allFiles", fotoServ.getAllFiles());
-		formImmobile.setFoto(fotoServ.getAllFiles());
 		service.salvaImmobile(formImmobile);
 		return "redirect:/administration/immobili";
 	}
+	
 	@GetMapping("/modifica/{id}")
 	public String modificaImmobile(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("modifica", true);
@@ -117,15 +119,13 @@ public class ImmobiliController {
 	        	Foto foto = new Foto();
 	            foto.setContent(file.getBytes()) ;
 	            foto.setTitolo(file.getOriginalFilename());
+	            foto.setType(file.getContentType());
 	            fileList.add(foto);
 	            }
-	            fotoServ.saveAllFilesList(fileList);
-	 
+	            formImmobile.setFoto(fileList);
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-		model.addAttribute("allFiles", fotoServ.getAllFiles());
-		formImmobile.setFoto(fotoServ.getAllFiles());
 		service.salvaImmobile(formImmobile);
 	    service.aggiorna(formImmobile);
 		return "redirect:/administration/immobili";

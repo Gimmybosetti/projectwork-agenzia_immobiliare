@@ -17,6 +17,11 @@ public class FotoService implements FotoServiceInterface {
 	public List<Foto> getAllFiles() {
 		return fotoRepo.findAll();
 	}
+	
+	@Override
+	public List<Foto> getAllFilesById(Long id) {
+		return fotoRepo.findAllById(id);
+	}
 
 	@Override
 	public void saveAllFilesList(List<Foto> fileList) {

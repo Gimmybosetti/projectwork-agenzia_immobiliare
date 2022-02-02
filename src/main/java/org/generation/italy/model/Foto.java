@@ -22,6 +22,9 @@ public class Foto {
 	@Lob
 	private byte[] content;
 	
+	@NotNull
+	private String type;
+	
 	public Long getId() {
 		return id;
 	}
@@ -44,6 +47,14 @@ public class Foto {
 
 	public void setContent(byte[] content) {
 		this.content = content;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

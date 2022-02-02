@@ -3,6 +3,7 @@ package org.generation.italy.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -71,7 +72,7 @@ public class Immobile {
 	@OneToMany(mappedBy = "immobile")
     private List<Appuntamento> appuntamenti;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Foto> foto;
 	
 	public Long getId() {

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.generation.italy.entityTransporter.AppuntamentoTransporter;
 import org.generation.italy.model.Appuntamento;
 import org.generation.italy.model.Cliente;
+import org.generation.italy.model.Immobile;
 import org.generation.italy.service.AppuntamentoService;
 import org.generation.italy.service.ClienteService;
 import org.generation.italy.service.ImmobileService;
@@ -53,13 +54,20 @@ public class AnnunciController {
 	
 	@GetMapping("/annunci/dettaglioAnnuncio/{id}")
 	public String dettaglioA (@PathVariable("id") Long id, Model model) {
-		model.addAttribute("immobile", service.prendiPerId(id));
+		Immobile immobile = service.prendiPerId(id);
+		immobile.setNumVisual(immobile.getNumVisual() + 1);
+		service.salvaImmobile(immobile);
+		model.addAttribute("immobile", immobile);
 		model.addAttribute("home", false);
 		return "/client/annunci/dettaglioAnnuncio";
 	}
+	
 	@GetMapping("/dettaglioAnnuncio/{id}")
 	public String dettaglioH (@PathVariable("id") Long id, Model model) {
-		model.addAttribute("immobile", service.prendiPerId(id));
+		Immobile immobile = service.prendiPerId(id);
+		immobile.setNumVisual(immobile.getNumVisual() + 1);
+		service.salvaImmobile(immobile);
+		model.addAttribute("immobile", immobile);
 		model.addAttribute("home", true);
 		return "/client/annunci/dettaglioAnnuncio";
 	}
@@ -117,7 +125,6 @@ public class AnnunciController {
 		}
 	}
 
-	
 	@GetMapping("/dettaglio/creaAppuntamentoConUtente/{immobileId}")
 	public String appuntamentoUtente (@PathVariable("immobileId") Long id, Model model) {
 		model.addAttribute("orari", orariService.trovaSlotOrario());

@@ -19,9 +19,12 @@ public class ImmobileService {
 	}
 
 	public Immobile salvaImmobile(Immobile immobile) {
-		immobile.setDataIns(LocalDateTime.now());
-		immobile.setCancellato(false);
-		immobile.setLibero(true);
+		if(immobile.getNumVisual() == null) {
+			immobile.setDataIns(LocalDateTime.now());
+			immobile.setCancellato(false);
+			immobile.setLibero(true);
+			immobile.setNumVisual(0);
+		}
 		return repository.save(immobile);
 	}
 

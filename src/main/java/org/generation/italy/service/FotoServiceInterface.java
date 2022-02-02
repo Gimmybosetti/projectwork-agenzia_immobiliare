@@ -8,5 +8,6 @@ public interface FotoServiceInterface {
 
 	List<Foto> getAllFiles();
     void saveAllFilesList(List<Foto> fileList);
+	List<Foto> getAllFilesById(Long id);
 	
 }
