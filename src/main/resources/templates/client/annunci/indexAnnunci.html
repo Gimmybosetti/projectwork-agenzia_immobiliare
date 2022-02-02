@@ -2,57 +2,138 @@
 <html lang="en">
 
 <head>
-	<div th:replace="fragments/head :: head">
+	<div th:replace="fragments/head :: head"></div>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-	<link rel="stylesheet" th:href="@{/style/indexstyle.css}" />
-	</div>
+	<link rel="stylesheet" th:href="@{/style/indexAnnunci.css}" />
+	
+	
 	<title>Annunci Immobili</title>
 </head>
 <header>
-	<div th:replace="fragments/navbarAnnunci :: nav"></div>
+	<nav class="navbar navbar-expand-lg fixed-top navbar-scroll">
+        <div class="container-fluid">
+            <button class="navbar-toggler ps-0" type="button" data-mdb-toggle="collapse" data-mdb-target="#navRori"
+                aria-controls="navRori" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon d-flex justify-content-start align-items-center">
+                    <i class="fas fa-bars"></i>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navRori">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" th:href="@{/GenerationsImmobiliare/home}"><i class="fas fa-landmark fs-3 "></i>
+                            Generation Immobiliare</a>
+                    </li>
+                    <li class="nav-item text-center">
+                        <a class="nav-link" th:href="@{/GenerationsImmobiliare/home}" rel="nofollow" target="_blank">
+                            <span>Home Gallery</span>
+                            
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" target="_blank">link Affitti</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav flex-row">
+                    <!-- Icone sulla destra per riempire -->
+                    <li class="nav-item">
+                        <a class="nav-link pe-2" href="#" rel="nofollow" target="_blank">
+                            <i class="fas fa-question-circle fs-4 mx-2"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-2" href="#" rel="nofollow" target="_blank">
+                            <i class="far fa-file-alt fs-4 mx-2"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-2" href="#" rel="nofollow" target="_blank">
+                            <i class="fab fa-btc fs-4 mx-2"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ps-2" href="#" rel="nofollow" target="_blank">
+                            <i class="fas fa-key fs-4 mx-2"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="salotto" class="bg-image">
+        <div class="mask text-white">
+            <div class="filtri">
+                <div class="container" id="primo-container">
+                    <div class="row  d-flex justify-content-center">
+                        <div class="col-12">
+                            <div class=" card-sopra">
+                                <div class="cardu-header text-center">
+                                    <span class="logo-centrale"><i class="fas fa-landmark fs-1 "></i></span>
+                                    <span class="fs-1">GenerationImmobiliare.org</span>
+                                    <p class="pt-3 fs-5">Una scritta a caso per Rori</p>
+                                </div>
+                                <div class="cardu-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" id="secondo-container">
+                    <div class="row d-flex justify-content-center text-center">
+                        <div class="col">
+                            <div class="row d-flex">
+                                <div class="col-3">
+                                <button class="btn btn-light il-drop">
+                                    <i class="fas fa-angle-double-up fs-4 mi-serve" id="icona-tipologia"></i></div>
+                                </button>
+                                <div class="col-8">TIPOLOGIA</div>
+
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row d-flex">
+                                <div class="col-3">
+                                <button class="btn btn-light il-drop">
+                                    <i class="fas fa-angle-double-up fs-4 mi-serve" id="icona-vendita"></i></div>
+                                </button>
+                                <div class="col-8">IN VENDITA/ AFFITTO</div>
+
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row d-flex">
+                                <div class="col-3">
+                                <button class="btn btn-light il-drop">
+                                    <i class="fas fa-angle-double-up fs-4 mi-serve" id="icona-energetica"></i></div>
+                                </button>
+                                <div class="col-8">CLASSE ENERGETICA</div>
+
+
+                            </div>
+                        </div>
+                            
+                       
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </header>
 
-<body class="container-fluid" style="background-color: rgb(206, 232, 248);">
-	<!-- Search button nel div verde -->
-	<section class="container-fluid mt-3">
-		<div class="row mb-3 d-flex">
-			<div class="col-6 me-3">
-				<div style="background-color: rgb(206, 232, 248); height: 60px;" class="rounded-pill ">
-					<form class="d-flex" style="position: relative; top: 15%; left: 10%;">
-						<label class="form-label me-3 mt-2 fw-3" for="mappa">Cerca in una zona</label>
-						<input class="form-control me-2" type="search" placeholder="Search" id="zona" aria-label="Search"
-							style="width: 50%;">
-						<a class="btn btn-primary ms-1" th:href="@{/GenerationsImmobiliare/home/annunciFiltrati}">Search</a>
-					</form>
-				</div>
-			</div>
-			<div class="row col-5 mb-3 px-4">
-				<div class="col" style="background-color: crimson;">filtri --- filtri</div>
-				<div class="col" style="background-color: rgb(255, 179, 0);">filtri --- filtri</div>
-				<div class="col" style="background-color: rgb(212, 209, 22);">filtri --- filtri</div>
-				<div class="col" style="background-color: rgb(17, 177, 123);">filtri --- filtri</div>
-				<span>Filtri</span>
-			</div>
-			<div class="col-1 d-flex justify-content-end">
-				<span>
-					<a href="#" class="btn btn-outline-primary">Mostra </a>
-				</span>
-			</div>
-		</div>
-		<!-- Barra dei filtri -->
-		<div class="container">
-			
-		</div>
-	</section>
-	<section class="container-fluid">
-		<div class="row mb-3">
-			<div class="col-6 text-center">
-				<div style="background-color: bisque; width: 100%;">
-					<img class="img-fluid" style="position: relative;" src="https://i.stack.imgur.com/7LLX9.jpg"
-						alt="immagine Google random">
-				</div>
-			</div>
-			<div class="col-6" th:if="${listaImmobili.size > 0}">
+<body>
+
+    <section class="container card-section my-5">
+        <h1 class="text-center">Card a caso</h1>
+        <div class="row card-group d-flex justify-content-center">
+          
+          <div class="col-6" th:if="${listaImmobili.size > 0}">
 				<div class="row container d-flex justify-content-center text-center gy-3">
 					<div th:each="annuncio : ${listaImmobili}" class="col-6">
 						<div class="card" style="width: 300px; min-height: 365px; border-radius: 10%;">
@@ -69,9 +150,36 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<div th:replace="fragments/head :: scripts"></div>
+          
+            <div class="card">
+                <img src="https://picsum.photos/seed/picsum/300/300" class="card-img-top" alt="sfondo-salotto 2">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+                    </p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/seed/picsum/300/300" class="card-img-top" alt="sfondo-salotto 3">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional
+                        content. This card has even longer content than the first to show that equal height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <script defer th:src="@{https://use.fontawesome.com/releases/v5.15.4/js/all.js}"
+        integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+        crossorigin="anonymous"></script>
+    <script th:src="@{/javascript/indexAnnunci.js}"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js}"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 <div th:replace="/fragments/footer :: foot"></div>
 
