@@ -4,6 +4,7 @@
 <div th:replace="fragments/head :: head"></div>
 <title>Form Appuntamento</title>
 </head>
+<<<<<<< HEAD:src/main/resources/templates/client/annunci/prenotaAppuntamento.html
 <header>
 	<div th:replace="fragments/navbarAnnunci :: nav"></div>
 </header>
@@ -17,6 +18,14 @@
 	         <hr style="color: rgb(38, 87, 117);">
 	         <form id="appuntamento-form" th:object="${appuntamento}"
 		th:action="@{/client/annunci/prenotaAppuntamento/{id}(id=${immobile.id})}"
+=======
+<div th:replace="fragments/navbarAnnunci :: nav"></div>
+<body style="overflow-x:hidden">
+	<h1 class="mx-5 text-center">Appuntamento</h1>
+	<hr>
+	<form id="appuntamento-form" th:object="${appuntamentoTrans}"
+		th:action="@{/GenerationsImmobiliare/home/dettaglio/creaAppuntamento/{immobileId}(immobileId=${immobile.id})}"
+>>>>>>> 877e9e8d40491ef319f946b781f5c115e67d8865:src/main/resources/templates/client/annunci/creaAppuntamento.html
 		method="post">
 		<ul>
 			<li th:each="err : ${#fields.allErrors()}" th:text="${err}"
@@ -25,7 +34,7 @@
 		<div class="row py-3">
 			<div class="col-8 offset-2 my-3">
 				<div class="row mx-4">
-					<div class="col-3">
+					<div class="col-4">
 						<label class="form-label" for="data">Data</label>
 						<input type="date" class="form-control" id="data" name="data"
 							th:field="*{data}" th:errorClass="is-invalid">
@@ -37,23 +46,23 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-3">
+					<div class="col-2">
 						<label class="form-label" for="selectOrario">Orario</label>
 						<select class="form-select" aria-label="Orario"
-							id="selectOrario" th:field="*{slotOrari.descrizione}">
+							id="selectOrario" th:field="*{slotOrari}">
 							<option value="">Scegli Orario</option>
 							<option th:each="orario : ${orari}"
 								th:value="${orario.id}" th:text="${orario.descrizione}"></option>
 						</select>
 					</div>
 					<div class="col-6">
-						<label class="form-label" for="email">Email</label>
+						<label class="form-label" for="email">Email utente</label>
 						<input type="text" class="form-control" id="email"
-							th:field="*{cliente.email}" th:errorClass="is-invalid">
-						<div th:if="${#fields.hasErrors('cliente.email')}"
+							name="email" th:errorClass="is-invalid">
+						<div th:if="${#fields.hasErrors('email')}"
 							class="invalid-feedback">
 							<ul>
-								<li th:each="err:${#fields.errors('cliente.email')}"
+								<li th:each="err:${#fields.errors('email')}"
 									th:text="${err}"></li>
 							</ul>
 						</div>
@@ -61,10 +70,17 @@
 					<div class="col-12 d-flex justify-content-between">
 						<button  style="color: cornflowerblue;" class="btn mt-3" type="submit">
 							<i class="fas fa-check"></i> Salva
+<<<<<<< HEAD:src/main/resources/templates/client/annunci/prenotaAppuntamento.html
 						</button >
 						<a  style="color: cornflowerblue;" class="btn mt-3"
 							th:href="${dettaglio} ? @{/GenerationsImmobiliare/home/dettaglioAnnuncio/{id}(id=${immobile.id})} : @{/GenerationsImmobiliare/home/annunciFiltrati}"><i class="fas fa-undo-alt"></i>
 							Indietro</a >
+=======
+						</button>
+						<a class="btn btn-primary mt-3"
+							th:href="@{/GenerationsImmobiliare/home/dettaglioAnnuncio/{immobileId}(immobileId=${immobile.id})}"><i class="fas fa-times"></i>
+							Annulla</a>
+>>>>>>> 877e9e8d40491ef319f946b781f5c115e67d8865:src/main/resources/templates/client/annunci/creaAppuntamento.html
 					</div>
 				</div>
 			</div>

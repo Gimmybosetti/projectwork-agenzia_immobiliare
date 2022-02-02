@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -28,6 +29,8 @@ public class Agente {
 	@OneToMany(mappedBy= "agente")
 	private List<Appuntamento> appuntamenti;
 	
+	@ManyToMany
+	private List<Foto> foto;
 	
 	public Long getId() {
 		return id;

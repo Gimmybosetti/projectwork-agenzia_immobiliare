@@ -132,8 +132,59 @@
 	</div>
 
 	<!-- Lista Appuntamenti Ordinati per Agente -->
+	<h1 class="text-center">Lista Appuntamenti Ordinati Per Agente</h1>
+	<div class="container">
+		<table class="table" th:if="${listaAppuntamentiTotali.size > 0}">
+			<thead>
+				<tr>
+					<th> Agente</th>
+					<th>Appuntamenti Totali</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item:${listaAppuntamentiTotali}">
 
+					<td>
+						<p th:text="|${item.nomeAgente} ${item.cognomeAgente}|"></p>
+					</td>
 
+					<td th:text="${item.appuntamentiTotali}"></td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<div class="alert alert-primary" role="alert" th:unless="${listaAppuntamentiTotali.size>0}">
+			non ci sono appuntamenti visualizzati.
+		</div>
+	</div>
+	<!-- tabella conteggio immobili per agente -->
+	<h1 class="text-center">Lista Immobili venduti o affittati per agente</h1>
+	<div class="container">
+		<table class="table" th:if="${listaImmobiliContatiPerAgente.size > 0}">
+			<thead>
+				<tr>
+					<th> Agente</th>
+					<th>Immobili venduti o affittati</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item:${listaImmobiliContatiPerAgente}">
+
+					<td>
+						<p th:text="|${item.nomeAgente} ${item.cognomeAgente}|"></p>
+					</td>
+
+					<td th:text="${item.conteggio}"></td>
+					
+				</tr>
+			</tbody>
+		</table>
+		<div class="alert alert-primary" role="alert" th:unless="${listaImmobiliContatiPerAgente.size>0}">
+			non ci sono immobili venduti o affittati .
+		</div>
+	</div>
 	<div th:replace="fragments/head :: scripts"></div>
 
 </body>

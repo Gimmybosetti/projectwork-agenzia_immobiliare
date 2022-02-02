@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
@@ -68,7 +69,10 @@ public class Immobile {
 	private Agente agente;
 	
 	@OneToMany(mappedBy = "immobile")
-    List<Appuntamento> appuntamenti;
+    private List<Appuntamento> appuntamenti;
+	
+	@ManyToMany
+	private List<Foto> foto;
 	
 	public Long getId() {
 		return id;
@@ -202,6 +206,14 @@ public class Immobile {
 
 	public void setAppuntamenti(List<Appuntamento> appuntamenti) {
 		this.appuntamenti = appuntamenti;
+	}
+
+	public List<Foto> getFoto() {
+		return foto;
+	}
+
+	public void setFoto(List<Foto> foto) {
+		this.foto = foto;
 	}
 	
 }

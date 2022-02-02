@@ -1,12 +1,13 @@
-<html>
+<html style="overflow-x:hidden">
 
 <head>
 	<div th:replace="fragments/head :: head"></div>
 	
 	<title th:text="${immobile.titolo}"></title>
 </head>
+<div th:replace="fragments/navbarAnnunci :: nav"></div>
 <header>
-	<div th:replace="fragments/navbarAnnunci :: nav"></div>
+	
 </header>
 
 <body style="background-color: rgb(184, 223, 248);">
@@ -27,7 +28,7 @@
 				   <div class="col-3">
 				    <span>
 						<a type="button"
-							th:href="@{/GenerationsImmobiliare/home/dettaglio/prenotaAppuntamento/{id}(id=${immobile.id})}"
+							th:href="@{/client/annunci/prenotaAppuntamento/{id}(id=${immobile.id})}"
 							 class="btn mt-3" style="color: cornflowerblue;"><i class="fas fa-paper-plane"></i> CONTATTACI</a>
 						<a class="btn mt-3" style="color: cornflowerblue;" th:href="@{/GenerationsImmobiliare/home/annunciFiltrati}"><i
 							class="fas fa-undo-alt"></i>
@@ -93,8 +94,12 @@
 					</div>
 				</div>
 				<div class="card-body">
+
 					<p class="card-text"></p>
+
+					
 				</div>
+				
 				
 			</div>
 	
@@ -138,4 +143,4 @@
 
 <div th:replace="/fragments/footer :: foot"></div>
 
-</html>
+</html >

@@ -9,10 +9,26 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.generation.italy.entityTransporter.AppuntamentoTransporter;
 //import javax.validation.constraints.Pattern;
 
 @Entity
 public class Cliente {
+	
+	public Cliente () {	}
+	
+	public Cliente (AppuntamentoTransporter appTrans) throws Exception{
+		
+		if (appTrans.getNome() == null) {
+			throw new Exception("Nome da inserire");
+		}
+		
+		this.nome = appTrans.getNome();
+		this.cognome = appTrans.getCognome();
+		this.phone = appTrans.getPhone();
+		this.email = appTrans.getEmail();
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
