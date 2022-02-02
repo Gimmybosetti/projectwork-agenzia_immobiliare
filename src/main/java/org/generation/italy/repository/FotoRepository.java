@@ -9,6 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 public interface FotoRepository extends JpaRepository<Foto, Long> {
 
 	@Query(value="select * from immobile_foto if2 inner join foto f on if2.foto_id = f.id where immobile_id = ?1", nativeQuery = true)
-	List<Foto> findAllById(Long id);
+	List<Foto> findImmobileFotoById(Long id);
+	
+	@Query(value="select * from agente_foto", nativeQuery = true)
+	List<Foto> findAgenteFoto();
 	
 }

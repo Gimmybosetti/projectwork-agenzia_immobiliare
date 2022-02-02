@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" style="overflow-x: hidden;">
 <html>
 
 <head>
@@ -22,20 +22,22 @@
 		<div class="container mb-5">
 			<form id="agente-form" th:object="${agente}"
 				th:action="${modifica} ? @{/administration/agenti/modifica/{id}(id=${agente.id})} : @{/administration/agenti/crea}"
-				method="post">
+				method="post"
+				enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-4">
 						<!-- <h1 class="mx-5 text-center">Agenti</h1>
 					<hr> -->
 						<div class="row my-5">
-							<div class="card">
-								<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-									class="card-img-top" alt="foto-profilo-2">
+							<div class="card" th:each="img : ${agente.foto}">
+								<img th:src="|/administration/agenti/modifica/${agente.id}/${img.id}/foto|"
+									class="card-img-top" th:alt="${img.titolo}">
 								<div class="card-body">
 									<div class="mb-3">
-										<label for="formFile" class="form-label">Seleziona una
-											foto profilo</label> <input class="form-control" type="file"
-											id="formFile">
+										<label for="formFile" class="form-label">Seleziona una foto profilo</label>
+										<div class="col-4">
+											<input type="file" name="files" id="formFile" multiple="multiple" accept="image/png, image/jpeg">
+										</div>
 									</div>
 								</div>
 							</div>

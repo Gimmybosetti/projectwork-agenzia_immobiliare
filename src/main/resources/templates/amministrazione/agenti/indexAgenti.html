@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" style="overflow-x: hidden;">
 <head>
 <div th:replace="fragments/head :: headTags"></div>
 <link rel="stylesheet" th:href="@{/style/agentistyle.css}">
@@ -21,11 +21,11 @@
 			class="row row-cols-1 row-cols-md-3 g-4 my-5 d-flex justify-content-evenly ">
 			<div th:each="agente : ${listaAgenti}">
 				<div class="col text-center">
-					<div class="card" style="width: 302px; border-radius: 10%;">
+					<div th:if="${agente.foto.size > 0}" th:each="img : ${agente.foto}" class="card" style="width: 302px; border-radius: 10%;">
 						<img
-							style="border-top-left-radius: 10%; border-top-right-radius: 10%;"
-							src="https://images.unsplash.com/photo-1620853721068-442e16d88afc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-							class="card-img-top" alt="foto-1">
+							style="border-top-left-radius: 10%; border-top-right-radius: 10%; height: 300px;"
+							th:src="|/administration/agenti/${img.id}/foto|"
+							class="card-img-top" th:alt="${img.titolo}">
 						<div class="card-body">
 							<h5 class="card-title">
 								<span th:text="${agente.nome}" th:remove="tag">Nome</span> <span
@@ -36,7 +36,21 @@
 								th:href="@{|/administration/agenti/modifica/${agente.id}|}"><i
 								class="fas fa-edit"></i></a>
 						</div>
-
+					</div>
+					<div th:unless="${agente.foto.size > 0}" class="card" style="width: 302px; border-radius: 10%;">
+						<img style="border-top-left-radius: 10%; border-top-right-radius: 10%;"
+							src="https://images.unsplash.com/photo-1620853721068-442e16d88afc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+							class="card-img-top" alt="Foto agente">
+						<div class="card-body">
+							<h5 class="card-title">
+								<span th:text="${agente.nome}" th:remove="tag">Nome</span> <span
+									class="mx-1"> </span> <span th:text="${agente.cognome}"
+									th:remove="tag">Cognome</span>
+							</h5>
+							<a class="btn btn-primary"
+								th:href="@{|/administration/agenti/modifica/${agente.id}|}"><i
+								class="fas fa-edit"></i></a>
+						</div>
 					</div>
 				</div>
 			</div>

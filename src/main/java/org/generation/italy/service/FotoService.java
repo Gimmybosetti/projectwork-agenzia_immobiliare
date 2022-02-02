@@ -20,7 +20,7 @@ public class FotoService implements FotoServiceInterface {
 	
 	@Override
 	public List<Foto> getAllFilesById(Long id) {
-		return fotoRepo.findAllById(id);
+		return fotoRepo.findImmobileFotoById(id);
 	}
 
 	@Override
@@ -29,4 +29,12 @@ public class FotoService implements FotoServiceInterface {
             fotoRepo.save(foto);
 	}
 
+	public List<Foto> findAllAgentiFoto() {
+		return fotoRepo.findAgenteFoto();
+	}
+	
+	public Foto getFotoById(Long id) {
+		return fotoRepo.findById(id).get();
+	}
+	
 }

@@ -2,6 +2,7 @@ package org.generation.italy.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Agente {
 	@OneToMany(mappedBy= "agente")
 	private List<Appuntamento> appuntamenti;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Foto> foto;
 	
 	public Long getId() {
@@ -64,4 +65,12 @@ public class Agente {
 		this.appuntamenti = appuntamenti;
 	}
 
+	public List<Foto> getFoto() {
+		return foto;
+	}
+
+	public void setFoto(List<Foto> foto) {
+		this.foto = foto;
+	}
+	
 }
