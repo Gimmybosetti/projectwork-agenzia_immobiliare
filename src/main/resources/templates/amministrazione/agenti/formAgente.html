@@ -8,7 +8,7 @@
 <title>Form Agenti</title>
 </head>
 
-<body >
+<body style="position: static;">
 	<!--  -->
 	<section class="container-fluid ">
 		<div class="border text-center "
@@ -19,15 +19,17 @@
 				alt="foto-sfondo-1">
 
 		</div>
-		<div class="container mb-5">
+		
+	</section>
+	<div class="container mb-5 form-fluttuante">
 			<form id="agente-form" th:object="${agente}"
 				th:action="${modifica} ? @{/administration/agenti/modifica/{id}(id=${agente.id})} : @{/administration/agenti/crea}"
 				method="post"
 				enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-4">
-						<!-- <h1 class="mx-5 text-center">Agenti</h1>
-					<hr> -->
+						<h1 class="mx-5 text-center">Immagine</h1>
+						<hr> 
 						<div class="row my-5">
 							<div class="card" th:each="img : ${agente.foto}">
 								<img th:src="|/administration/agenti/modifica/${agente.id}/${img.id}/foto|"
@@ -88,7 +90,6 @@
 				</div>
 			</form>
 		</div>
-	</section>
 	<div th:replace="fragments/head ::scripts"></div>
 
 
