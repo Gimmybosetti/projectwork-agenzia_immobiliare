@@ -72,14 +72,10 @@
     height: 100px;
 }
 
-.icona-tipologia {
-
+#btn-info {
+	color:cornflowerblue;
 }
 
-.icona-vendita {
-
-}
-
-.icona-energetica {
-
+body {
+	background-color: rgb(184, 223, 248);;
 }

@@ -1,9 +1,19 @@
 body {
 	position: relative;
 	min-height: 100vh;
+	background-color: rgb(206, 232, 248);
 }
 
 footer {
 	position: absolute;
 	bottom: 0;
 }
+
+#btn-contattaci {
+	color:cornflowerblue;
+}
+
+#btn-indietro {
+	color:cornflowerblue;
+}
+
