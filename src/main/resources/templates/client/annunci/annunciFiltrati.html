@@ -62,54 +62,33 @@
 									th:text="${annuncio.canone}"></span>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-expand-arrows-alt mt-1 me-2"></i></ion-icon>
+								<i id="metri" class="fas fa-expand-arrows-alt mt-1 me-2"></i ></ion-icon>
 								<p class="font" th:text="|${annuncio.metri} mq|"></p>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-bath mt-1 me-2"></i>
+								<i id="bagni" class="fas fa-bath mt-1 me-2"></i >
 								<p class="font" th:text="${annuncio.nBagni}"></p>
 							</div>
-							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-bolt mt-1 me-2"></i>
-								<p class="font" th:text="${annuncio.classeEnergetica.descrizione}"></p>
-							</div>
-							<div class="col-4 border-start border-primary d-flex">
-								<i class="fas fa-map-marked-alt mt-1 me-2"></i>
-								<p class="font" th:text="${annuncio.indirizzo}"></p>
-							</div>
-						</div>
-						<div class="row ">
-							<div class="col-2">
-								<i class="fas fa-store mt-1 me-2"></i><span style="font-size:larger; font-weight:300;"
-									th:text="${annuncio.nBalconi}"></span>
-							</div>
-							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-door-closed mt-1 me-2"></i>
-								<p class="font" th:text="${annuncio.nStanze}"></p>
-							</div>
-							<div class="col-4 border-start border-primary d-flex">
-								<i class="fab fa-houzz mt-1 me-2"></i>
+							<div class="col-3 border-start border-primary d-flex">
+								<i id="tipologia" class="fab fa-houzz mt-1 me-2"></i >
 								<p class="font" th:text="${annuncio.tipologia.descrizione}"></p>
 							</div>
-							<div class="col-4 border-start border-primary d-flex">
-								<i class="fas fa-user-tie mt-1 me-2"></i>
+							<div class="col-3 border-start border-primary d-flex">
+								<i id="agente" class="fas fa-user-tie mt-1 me-2"></i >
 								<p class="font" th:text="|${annuncio.agente.nome} ${annuncio.agente.cognome}|"></p>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 				<div class="row mt-4">
-					<p><strong>Zona City Life</strong></p>
-					<p>Elegante quadrilocale facente parte di un nuovo progetto residenziale immerso nel pieno del
-						panorama milanese.
-						Appartamento nuovissimo, 4 locali che comprendono zona giorno, cucina abitabile, 2 camere da
-						letto, due bagni e un ampio terrazzo.
-					</p>
+					<p class="zona"><strong>Zona City Life</strong></p >
+					
 				</div>
-				<div class="row">
-					<div class="col-8">
+				<div class="row mt-5">
+					<div class="col-12">
 						<div class="buttons">
-							<button id="heart" type="button" class="btn cuore" style="color: cornflowerblue;"><i
+							<button id="heart" type="button" class="btn cuore mt-3" style="color: cornflowerblue;"><i
 									class="fas fa-heart"></i></button>
 						</div>
 					</div>

@@ -5,7 +5,6 @@ footer {
 }
 
 body {
-	
 	min-height: 100vh;
 }
 
@@ -16,6 +15,15 @@ body {
 
 #agente-form {
 	min-height: 250px;
+}
+
+#sfondo {
+	background-image: url("https://images.unsplash.com/photo-1626178793926-22b28830aa30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+	position: relative;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0% 40%;
 }
 
 .riga-img {

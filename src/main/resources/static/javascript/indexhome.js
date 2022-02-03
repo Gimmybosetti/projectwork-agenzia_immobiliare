@@ -87,3 +87,7 @@ function ruotaSuGiu(evento2) {
         
     }
     
+    
+   
+
+    
