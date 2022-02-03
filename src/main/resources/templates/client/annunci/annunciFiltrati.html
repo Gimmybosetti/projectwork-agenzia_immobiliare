@@ -8,7 +8,7 @@
 </head>
 <div th:replace="fragments/navbarAnnunci :: nav"></div>
 <header>
-	
+
 </header>
 
 <body>
@@ -24,40 +24,28 @@
 					<div class="card-body p-0">
 						<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img src="Casa1/xxl (3).jpg" class="d-block w-100" alt="foto-1">
+								<div class="carousel-item active" th:each="img : ${annuncio.foto}" th:if="${imgStat.index == 0}">
+									<img th:src="|/GenerationsImmobiliare/home/annunciFiltrati/${img.id}/foto|"
+										class="d-block w-100" th:alt="${img.titolo}">
 								</div>
-								<div class="carousel-item">
-									<img src="Casa1/xxl (4).jpg" class="d-block w-100" alt="foto-2">
-								</div>
-								<div class="carousel-item">
-									<img src="Casa1/foto2.jpg" class="d-block w-100" alt="foto-3">
+								<div class="carousel-item" th:each="img : ${annuncio.foto}" th:unless="${imgStat.index == 0}">
+									<img th:src="|/GenerationsImmobiliare/home/annunciFiltrati/${img.id}/foto|"
+										class="d-block w-100" th:alt="${img.titolo}">
 								</div>
 							</div>
-							<button class="carousel-control-prev" type="button"
-								data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Previous</span>
-							</button>
-							<button class="carousel-control-next" type="button"
-								data-bs-target="#carouselExampleControls" data-bs-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
 						</div>
 					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+						data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+						data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 					<div class="card-footer text-muted p-0">
-						<div class="row d-flex g-0">
-							<div class="col-4">
-								<img class="img-fluid " src="Casa1/xxl (3).jpg" alt="foto-7">
-							</div>
-							<div class="col-4">
-								<img class="img-fluid " src="Casa1/xxl (4).jpg" alt="foto-8">
-							</div>
-							<div class="col-4">
-								<img class="img-fluid " src="Casa1/foto2.jpg" alt="foto-9">
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -70,33 +58,42 @@
 					<div class="col-9">
 						<div class="row ">
 							<div class="col-2">
-								<i class="fas fa-euro-sign me-1"></i><span style="font-size:larger; font-weight:300;" th:text="${annuncio.canone}"></span>
+								<i class="fas fa-euro-sign me-1"></i><span style="font-size:larger; font-weight:300;"
+									th:text="${annuncio.canone}"></span>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-expand-arrows-alt mt-1 me-2"></i></ion-icon><p class="font" th:text="|${annuncio.metri} mq|"></p>
+								<i class="fas fa-expand-arrows-alt mt-1 me-2"></i></ion-icon>
+								<p class="font" th:text="|${annuncio.metri} mq|"></p>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-bath mt-1 me-2"></i><p class="font" th:text="${annuncio.nBagni}"></p>
+								<i class="fas fa-bath mt-1 me-2"></i>
+								<p class="font" th:text="${annuncio.nBagni}"></p>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-bolt mt-1 me-2"></i><p class="font" th:text="${annuncio.classeEnergetica.descrizione}"></p>
+								<i class="fas fa-bolt mt-1 me-2"></i>
+								<p class="font" th:text="${annuncio.classeEnergetica.descrizione}"></p>
 							</div>
 							<div class="col-4 border-start border-primary d-flex">
-								<i class="fas fa-map-marked-alt mt-1 me-2"></i><p class="font" th:text="${annuncio.indirizzo}"></p>
+								<i class="fas fa-map-marked-alt mt-1 me-2"></i>
+								<p class="font" th:text="${annuncio.indirizzo}"></p>
 							</div>
 						</div>
 						<div class="row ">
 							<div class="col-2">
-								<i class="fas fa-store mt-1 me-2"></i><span style="font-size:larger; font-weight:300;" th:text="${annuncio.nBalconi}"></span>
+								<i class="fas fa-store mt-1 me-2"></i><span style="font-size:larger; font-weight:300;"
+									th:text="${annuncio.nBalconi}"></span>
 							</div>
 							<div class="col-2 border-start border-primary d-flex">
-								<i class="fas fa-door-closed mt-1 me-2"></i><p class="font" th:text="${annuncio.nStanze}"></p>
+								<i class="fas fa-door-closed mt-1 me-2"></i>
+								<p class="font" th:text="${annuncio.nStanze}"></p>
 							</div>
 							<div class="col-4 border-start border-primary d-flex">
-								<i class="fab fa-houzz mt-1 me-2"></i><p class="font" th:text="${annuncio.tipologia.descrizione}"></p>
+								<i class="fab fa-houzz mt-1 me-2"></i>
+								<p class="font" th:text="${annuncio.tipologia.descrizione}"></p>
 							</div>
 							<div class="col-4 border-start border-primary d-flex">
-								<i class="fas fa-user-tie mt-1 me-2"></i><p class="font" th:text="|${annuncio.agente.nome} ${annuncio.agente.cognome}|"></p>
+								<i class="fas fa-user-tie mt-1 me-2"></i>
+								<p class="font" th:text="|${annuncio.agente.nome} ${annuncio.agente.cognome}|"></p>
 							</div>
 						</div>
 					</div>
@@ -122,11 +119,11 @@
 	</section>
 
 	<script>
-		
+
 	</script>
 	<div th:replace="fragments/head ::scripts"></div>
 	<script th:src="@{/javascript/annuncifiltrati.js}"></script>
-	
+
 </body>
 
 <div th:replace="/fragments/footer :: foot"></div>

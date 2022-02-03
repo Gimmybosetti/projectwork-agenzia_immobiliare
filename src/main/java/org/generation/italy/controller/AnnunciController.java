@@ -1,5 +1,6 @@
 package org.generation.italy.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -7,12 +8,18 @@ import javax.validation.Valid;
 import org.generation.italy.entityTransporter.AppuntamentoTransporter;
 import org.generation.italy.model.Appuntamento;
 import org.generation.italy.model.Cliente;
+import org.generation.italy.model.Foto;
 import org.generation.italy.model.Immobile;
 import org.generation.italy.service.AppuntamentoService;
 import org.generation.italy.service.ClienteService;
+import org.generation.italy.service.FotoService;
 import org.generation.italy.service.ImmobileService;
 import org.generation.italy.service.SlotOrariService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +33,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/GenerationsImmobiliare/home")
 public class AnnunciController {
+	
+	@Autowired
+	private FotoService fotoServ;
 
 	@Autowired
 	private ImmobileService service;
@@ -41,8 +51,23 @@ public class AnnunciController {
 	
 	@GetMapping
 	public String index (Model model) {
-		model.addAttribute("listaImmobili",service.trovaImmobile());
+		model.addAttribute("listaImmobili", service.trovaImmobile());
+		List<Foto> listaUnaFoto = new ArrayList<Foto>();
+		//for(Immobile immobile : service.trovaImmobile()) {
+		//	List<Foto> listaTemp = fotoServ.getAllFilesById(immobile.getId());
+		//	listaUnaFoto.add(listaTemp.get(0));
+		//}
+		model.addAttribute("listaUnaFoto", listaUnaFoto);
 		return "/client/annunci/indexAnnunci";
+	}
+	
+	@RequestMapping(value="/{id}/foto", produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getFotoContent(@PathVariable Long id) {
+		Foto foto = fotoServ.getFotoById(id);
+		byte[] fotoContent = foto.getContent();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_JPEG);		
+		return new ResponseEntity<byte[]>(fotoContent, headers, HttpStatus.OK);
 	}
 	
 	// !! DA IMPLEMENTARE !!
@@ -50,6 +75,15 @@ public class AnnunciController {
 	public String annunciFiltrati (Model model) {
 		model.addAttribute("listaImmobili",service.trovaImmobile());
 		return "/client/annunci/annunciFiltrati";
+	}
+	
+	@RequestMapping(value="/annunciFiltrati/{id}/foto", produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getFotoContentFiltrati(@PathVariable Long id) {
+		Foto foto = fotoServ.getFotoById(id);
+		byte[] fotoContent = foto.getContent();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_JPEG);		
+		return new ResponseEntity<byte[]>(fotoContent, headers, HttpStatus.OK);
 	}
 	
 	@GetMapping("/annunci/dettaglioAnnuncio/{id}")
