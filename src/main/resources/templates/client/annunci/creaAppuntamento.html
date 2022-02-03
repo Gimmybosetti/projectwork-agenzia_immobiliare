@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" style="overflow-x: hidden">
 
 <head>
 <div th:replace="fragments/head :: headTags"></div>
@@ -61,10 +61,10 @@
 						        th:href="@{/GenerationsImmobiliare/home/dettaglioAnnuncio/{immobileId}(immobileId=${immobile.id})}">
 							<i class="fas fa-times"></i> Annulla
 						</a>
-						<a class="btn  mt-3"
+						<button class="btn mt-3"
 						    type="submit"
 							><i class="fas fa-check"></i>
-							Salva</a>
+							Salva</button>
 					</div>
 				</div>
 			</div>

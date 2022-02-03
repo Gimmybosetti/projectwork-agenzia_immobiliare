@@ -29,7 +29,7 @@
 						aria-current="page" th:href="@{/GenerationsImmobiliare/home}"><i
 							class="fas fa-landmark fs-3 "></i> Generation Immobiliare</a></li>
 					<li class="nav-item mt-1"><a class="nav-link" th:href="@{/GenerationsImmobiliare/home/annunciFiltrati}"
-						>Affitti/Vendite</a></li>
+						>Tutti gli Annunci</a></li>
 				</ul>
 
 				<ul class="navbar-nav flex-row">
@@ -159,9 +159,12 @@
             <div class="row container d-flex justify-content-center text-center gy-3 mb-2">
                 <div th:each="annuncio : ${listaImmobili}" class="col-4">
                     <div class="card shadow" style="width: 375px; min-height: 365px; border-radius: 10%;">
-                        <img
+                        <img th:if="${annuncio.foto.size > 0}"
                             style="border-top-left-radius: 10%; border-top-right-radius: 10%; max-height: 350px; min-height: 350px;"
                             th:src="|/GenerationsImmobiliare/home/${annuncio.foto[0].id}/foto|" th:alt="${annuncio.foto[0].titolo}">
+                         <img th:unless="${annuncio.foto.size > 0}"
+                            style="border-top-left-radius: 10%; border-top-right-radius: 10%; max-height: 350px; min-height: 350px;"
+                            th:src="@{https://d6scj24zvfbbo.cloudfront.net/3143ec2faaef9fcf89eedb233b768c50/200000072-4ce274ce28/fx-grayscale-dark_200000047.jpg?ph=692b6fa177}" th:alt="Foto Immobile">
                         <div class="card-body text-center" style="min-height: 135px;">
                             <h5 th:text="${annuncio.titolo}" class="card-title"></h5>
 	                        <div class="d-flex justify-content-between w-50" style="margin-left: 90px;">
