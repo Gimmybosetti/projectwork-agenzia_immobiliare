@@ -6,12 +6,15 @@
 	<title th:text="${immobile.titolo}"></title>
 </head>
 <div th:replace="fragments/navbarAnnunci :: nav"></div>
+<link
+	href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" th:href="@{/style/dettaglioannuncistyle.css}" />
 <header> </header>
 
 <body>
 	<div class="container" th:object="${immobile}">
-		<h1 th:text="*{titolo}"></h1>
-		<!-- <hr /> -->
+		
 		<section class="container shadow p-3 mb-3 bg-white rounded">
 			<div class="row">
 
@@ -24,11 +27,14 @@
 							</span>
 						</div>
 						<div class="col-3">
-							<span> <a type="button"
-									th:href="@{/GenerationsImmobiliare/home/dettaglio/creaAppuntamento/{id}(id=${immobile.id})}"
-									th:text="CONTATTACI" class="btn mt-3" style="color: cornflowerblue;"> </a> <a
-									class="btn btn-primary mt-3" th:href="${home} ? @{/GenerationsImmobiliare/home} : 
-		@{/GenerationsImmobiliare/home/annunciFiltrati}"><i class="fas fa-times"></i> Annulla </a>
+							<span> <a id="btn-contattaci" type="button"
+								th:href="@{/GenerationsImmobiliare/home/dettaglio/creaAppuntamento/{id}(id=${immobile.id})}"
+							    class="btn mt-3"
+								><i class="far fa-paper-plane"></i> CONTATTACI </a > 
+								<a id="btn-indietro" class="btn mt-3"
+								th:href="${home} ? @{/GenerationsImmobiliare/home} : 
+		                                @{/GenerationsImmobiliare/home/annunciFiltrati}"><i
+									class="fas fa-undo-alt"></i> Indietro </a  >
 							</span>
 						</div>
 					</div>
@@ -99,8 +105,8 @@
 
 				</div>
 			</div>
-	</div>
 	</section>
+	
 	<!-- INFORMAZIONI UTILI -->
 	<section class="container shadow p-3 mb-3 bg-white rounded">
 		<div class="row">
@@ -136,7 +142,8 @@
 			</div>
 		</div>
 	</section>
-
+	</div>
+    
 	<div th:replace="fragments/head :: scripts"></div>
 	<script src="main.js"></script>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

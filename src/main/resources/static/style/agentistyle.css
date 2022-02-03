@@ -5,5 +5,20 @@ footer {
 }
 
 body {
+	
 	min-height: 100vh;
+}
+
+.form-fluttuante {
+	min-height: 300px;
+	padding-top: 20px;
+}
+
+#agente-form {
+	min-height: 250px;
+}
+
+.riga-img {
+	min-height: 200px;
+	
 }
