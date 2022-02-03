@@ -2,10 +2,15 @@
 
 <head>
 <div th:replace="fragments/head :: headTags"></div>
+<link
+	href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" th:href="@{/style/creaAppuntamento.css}" />
 <title>Form Appuntamento</title>
 </head>
 <div th:replace="fragments/navbarAnnunci :: nav"></div>
-<body style="overflow-x:hidden">
+<body>
+  <section class=" container shadow">
 	<h1 class="mx-5 text-center">Appuntamento</h1>
 	<hr>
 	<form id="appuntamento-form" th:object="${appuntamentoTrans}"
@@ -52,18 +57,21 @@
 						</div>
 					</div>
 					<div class="col-12 d-flex justify-content-between">
-						<button class="btn btn-primary mt-3" type="submit">
-							<i class="fas fa-check"></i> Salva
-						</button>
-						<a class="btn btn-primary mt-3"
-							th:href="@{/GenerationsImmobiliare/home/dettaglioAnnuncio/{immobileId}(immobileId=${immobile.id})}"><i class="fas fa-times"></i>
-							Annulla</a>
+						<a class="btn mt-3 " 
+						        th:href="@{/GenerationsImmobiliare/home/dettaglioAnnuncio/{immobileId}(immobileId=${immobile.id})}">
+							<i class="fas fa-times"></i> Annulla
+						</a>
+						<a class="btn  mt-3"
+						    type="submit"
+							><i class="fas fa-check"></i>
+							Salva</a>
 					</div>
 				</div>
 			</div>
 		</div>
 
 	</form>
+  </section>
 	<div th:replace="fragments/head ::scripts"></div>
 
 </body >
