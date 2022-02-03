@@ -11,10 +11,12 @@ import org.generation.italy.model.Cliente;
 import org.generation.italy.model.Foto;
 import org.generation.italy.model.Immobile;
 import org.generation.italy.service.AppuntamentoService;
+import org.generation.italy.service.ClasseEnergeticaService;
 import org.generation.italy.service.ClienteService;
 import org.generation.italy.service.FotoService;
 import org.generation.italy.service.ImmobileService;
 import org.generation.italy.service.SlotOrariService;
+import org.generation.italy.service.TipologiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -49,6 +52,12 @@ public class AnnunciController {
 	@Autowired
 	private AppuntamentoService appService;
 	
+	@Autowired
+	private ClasseEnergeticaService classeEnerService;
+	
+	@Autowired
+	private TipologiaService tipologiaService;
+	
 	@GetMapping
 	public String index (Model model) {
 		model.addAttribute("listaImmobili", service.trovaImmobile());
@@ -58,6 +67,10 @@ public class AnnunciController {
 		//	listaUnaFoto.add(listaTemp.get(0));
 		//}
 		model.addAttribute("listaUnaFoto", listaUnaFoto);
+		model.addAttribute("listaImmobili",service.trovaImmobile());
+        model.addAttribute("immobile", new Immobile());
+        model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
+        model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
 		return "/client/annunci/indexAnnunci";
 	}
 	
@@ -70,12 +83,17 @@ public class AnnunciController {
 		return new ResponseEntity<byte[]>(fotoContent, headers, HttpStatus.OK);
 	}
 	
-	// !! DA IMPLEMENTARE !!
-	@GetMapping("/annunciFiltrati")
-	public String annunciFiltrati (Model model) {
-		model.addAttribute("listaImmobili",service.trovaImmobile());
-		return "/client/annunci/annunciFiltrati";
-	}
+	@PostMapping
+    public String indexPost (Model model,@RequestParam(name="tipologia",required=false) Long tipologia,
+            @RequestParam(name="inVendita",required=false,defaultValue = "false") Boolean inVendita,
+            @RequestParam(name="classeEnergetica",required=false) Long classeEnergetica) {
+        model.addAttribute("listaImmobili",service.trovaImmobile());
+        model.addAttribute("immobile", new Immobile());
+        model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
+        model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
+        model.addAttribute("listaFiltrata",service.listaImmobiliFiltarti(tipologia, inVendita, classeEnergetica));
+        return "/client/annunci/annunciFiltrati";
+    }
 	
 	@RequestMapping(value="/annunciFiltrati/{id}/foto", produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getFotoContentFiltrati(@PathVariable Long id) {
