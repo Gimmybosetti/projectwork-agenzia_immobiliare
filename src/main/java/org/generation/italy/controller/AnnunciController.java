@@ -62,10 +62,6 @@ public class AnnunciController {
 	public String index (Model model) {
 		model.addAttribute("listaImmobili", service.trovaImmobile());
 		List<Foto> listaUnaFoto = new ArrayList<Foto>();
-		//for(Immobile immobile : service.trovaImmobile()) {
-		//	List<Foto> listaTemp = fotoServ.getAllFilesById(immobile.getId());
-		//	listaUnaFoto.add(listaTemp.get(0));
-		//}
 		model.addAttribute("listaUnaFoto", listaUnaFoto);
 		model.addAttribute("listaImmobili",service.trovaImmobile());
         model.addAttribute("immobile", new Immobile());
@@ -93,6 +89,14 @@ public class AnnunciController {
         model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
         model.addAttribute("listaFiltrata",service.listaImmobiliFiltarti(tipologia, inVendita, classeEnergetica));
         return "/client/annunci/annunciFiltrati";
+    }
+	
+	@GetMapping("/annunciFiltrati")
+    public String annunciFiltrati (Model model, @RequestParam(name="tipologia",required=false) Long tipologia,
+            @RequestParam(name="inVendita",required=false) Boolean inVendita,
+            @RequestParam(name="classeEnergetica",required=false) Long classeEnergetica) {
+            model.addAttribute("listaFiltrata",service.listaImmobiliFiltarti(tipologia, inVendita, classeEnergetica));
+            return "/client/annunci/annunciFiltrati";
     }
 	
 	@RequestMapping(value="/annunciFiltrati/{id}/foto", produces = MediaType.IMAGE_JPEG_VALUE)
