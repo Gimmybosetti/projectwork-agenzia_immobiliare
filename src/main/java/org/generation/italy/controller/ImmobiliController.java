@@ -126,7 +126,6 @@ public class ImmobiliController {
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
-		service.salvaImmobile(formImmobile);
 	    service.aggiorna(formImmobile);
 		return "redirect:/administration/immobili";
 	}
