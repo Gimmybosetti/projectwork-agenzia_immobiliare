@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/administration/agenti")
@@ -69,11 +70,12 @@ public class AgentiController {
 	}
 	@PostMapping("/crea")
 	public String postAgente(@Valid @ModelAttribute("agente") Agente formAgente, BindingResult bindingResult,
-			@RequestParam("files") MultipartFile[] files, Model model) {
+			@RequestParam("files") MultipartFile[] files, Model model, RedirectAttributes redirectAttrs) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("modifica", false);
 			model.addAttribute("listaAgenti", service.trovaAgente());
-			return "/amministrazione/agenti/formAgente";
+			redirectAttrs.addFlashAttribute("successo", "Errore, si prega di riprovare compilando tutti i campi.");
+			return "redirect:/administration/agenti/crea";
 		}
 		try {
 	        List<Foto> fileList = new ArrayList<Foto>();
@@ -90,6 +92,7 @@ public class AgentiController {
 	            e.printStackTrace();
 	        }
 		service.salvaAgente(formAgente);
+		redirectAttrs.addFlashAttribute("successo", "Creazione avvenuta con successo.");
 		return "redirect:/administration/agenti";
 	}
 	@GetMapping("/modifica/{id}")

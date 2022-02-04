@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -140,7 +141,7 @@ public class AnnunciController {
 	@PostMapping("/dettaglio/creaAppuntamento/{immobileId}")
 	public String prenotaAppuntamentoD(
 			@Valid @ModelAttribute("appuntamentoTrans") AppuntamentoTransporter appuntamentoTrans,
-			@PathVariable("immobileId") Long id, BindingResult bindingResult, Model model) {
+			@PathVariable("immobileId") Long id, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("orari", orariService.trovaSlotOrario());
 			model.addAttribute("clienti", clienteService.trovaCliente());
@@ -151,6 +152,7 @@ public class AnnunciController {
 		List<Appuntamento> app = appService.trovaAppuntamentoPerImmobile(id);
 		Cliente cliente = clienteService.findByEmail(appuntamentoTrans.getEmail());
 		if (cliente == null) {
+			redirectAttrs.addFlashAttribute("successo", "Email non registrata. Si prega di registrarsi prima di continuare.");
 			return "redirect:/GenerationsImmobiliare/home/dettaglio/creaAppuntamentoConUtente/{immobileId}";
 		} else {
 			try {
@@ -163,7 +165,8 @@ public class AnnunciController {
 							model.addAttribute("clienti", clienteService.trovaCliente());
 							model.addAttribute("appuntamentoTrans", new AppuntamentoTransporter());
 							model.addAttribute("immobile", service.prendiPerId(id));
-							return "/client/annunci/creaAppuntamento";
+							redirectAttrs.addFlashAttribute("successo", "Data e/o slot orario non disponibile. Riprovare con una data e/o slot orario differente.");
+							return "redirect:/GenerationsImmobiliare/home/dettaglio/creaAppuntamento/{immobileId}";
 						}
 					}
 					exist = true;

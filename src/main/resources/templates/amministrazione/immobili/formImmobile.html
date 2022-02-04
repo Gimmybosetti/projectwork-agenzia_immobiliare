@@ -7,6 +7,11 @@
 	<title>Form Immobile</title>
 </head>
 
+<div th:if="${successo != null}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span th:text="${successo}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div  >
+
 <body>
 	<h1 class="mx-5 text-center">Immobile</h1>
 	<hr>
