@@ -9,6 +9,11 @@
 	<div th:replace="fragments/navbarAdmin :: nav"></div>
 </header>
 
+<div th:if="${successo != null}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <span th:text="${successo}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div  >
+
 <body style="position:relative;">
 	<h1 class="text-center">Agenti</h1>
 	<hr />

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/administration/clienti")
@@ -36,13 +37,15 @@ public class ClientiController {
 		return "/amministrazione/clienti/formCliente";
 	}
 	@PostMapping("/crea")
-	public String postCliente(@Valid @ModelAttribute("cliente") Cliente formCliente, BindingResult bindingResult, Model model) {
+	public String postCliente(@Valid @ModelAttribute("cliente") Cliente formCliente, BindingResult bindingResult, Model model, RedirectAttributes redirectAttrs) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("modifica", false);
 			model.addAttribute("listaClienti", service.trovaCliente());
-			return "/amministrazione/clienti/formCliente";
+			redirectAttrs.addFlashAttribute("successo", "Errore, si prega di riprovare compilando tutti i campi.");
+			return "redirect:/administration/clienti/crea";
 		}
 		service.salvaCliente(formCliente);
+		redirectAttrs.addFlashAttribute("successo", "Creazione di un account utente avvenuta con successo.");
 		return "redirect:/administration/clienti";
 	}
 	@GetMapping("/modifica/{id}")

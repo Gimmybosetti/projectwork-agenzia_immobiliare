@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/administration/immobili")
@@ -63,14 +64,15 @@ public class ImmobiliController {
 	
 	@PostMapping("/crea")
 	public String postImmobile(@Valid @ModelAttribute("immobile") Immobile formImmobile, 
-			BindingResult bindingResult, @RequestParam("files") MultipartFile[] files, Model model) {
+			BindingResult bindingResult, @RequestParam("files") MultipartFile[] files, Model model, RedirectAttributes redirectAttrs) {
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("modifica", false);
 			model.addAttribute("listaImmobili", service.trovaImmobile());
 			model.addAttribute("listaAgenti", agenteService.trovaAgente());
 			model.addAttribute("listaClasseEner", classeEnerService.trovaClasseEnergetica());
 			model.addAttribute("listaTipologia", tipologiaService.trovaTipologia());
-			return "/amministrazione/immobili/formImmobile";
+			redirectAttrs.addFlashAttribute("successo", "Errore, si prega di riprovare compilando tutti i campi.");
+			return "redirect:/administration/immobili/crea";
 		}
 		try {
 	        List<Foto> fileList = new ArrayList<Foto>();
@@ -87,6 +89,7 @@ public class ImmobiliController {
 	            e.printStackTrace();
 	        }
 		service.salvaImmobile(formImmobile);
+		redirectAttrs.addFlashAttribute("successo", "Creazione di un immobile avvenuta con successo.");
 		return "redirect:/administration/immobili";
 	}
 	
